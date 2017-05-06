@@ -1,0 +1,15 @@
+<resources>
+
+    <declare-styleable name="ios">
+        <attr name="key" format="string" />
+        <attr name="tintColor" format="color" />
+        <attr name="title" format="string" />
+        <attr name="subtitle" format="string" />
+        <attr name="icon" format="reference" />
+        <attr name="showarrow" format="boolean" />
+        <attr name="marginleftlength" format="string" />
+        <attr name="cutright" format="string" />
+        <attr name="hideback" format="boolean" />
+    </declare-styleable>
+
+</resources>

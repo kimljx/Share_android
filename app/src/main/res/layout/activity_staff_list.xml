@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ios="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_staff_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.share.phone.StaffListActivity">
+
+    <ios.ui.UINavigationBar
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        />
+
+    <ListView
+        android:id="@+id/staff_listview"
+        android:layout_below="@id/navigationBar"
+        android:background="@color/BG"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_below="@id/staff_listview"
+        android:background="@color/LINE"
+        android:layout_height="1dp"/>
+
+</RelativeLayout>

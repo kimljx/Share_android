@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
+    defaultConfig {
+        applicationId "cn.share"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "3c9530c742d35b2600557b00", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+//    signingConfigs {
+//        //调试版的keystore
+//        debug {
+//            storeFile file("C:\\Users\\wang\\.android\\debug.keystore")
+//            storePassword "android"
+//            keyAlias "androiddebugkey"
+//            keyPassword "android"
+//        }
+//        //发布版的keystore
+//        release {
+//            storeFile file("G:\\SVN\\code.taobao.org\\playground_android\\trunk\\keystore.jks")
+//            storePassword "123456"
+//            keyAlias "playground"
+//            keyPassword "123456"
+//        }
+//    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile files('libs/org.apache.http.legacy.jar')
+    compile files('libs/nineoldanimatin.jar')
+    compile files('libs/AMap_Location_V3.3.0_20170118.jar')
+    // 此处以JPush 3.0.3 版本为例。
+    // 此处以JCore 1.1.1 版本为例。
+    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.google.zxing:core:3.2.1'
+    compile 'com.journeyapps:zxing-android-embedded:3.4.0'
+    compile 'com.jakewharton:butterknife:8.5.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:design:25.2.0'
+//    compile 'com.amap.api:map3d-native:latest.integration'
+//    compile 'com.amap.api:map3d:latest.integration'
+//    compile 'com.amap.api:location:latest.integration'
+    compile 'com.amap.api:map3d-native:5.0.0'
+    compile 'com.amap.api:map3d:5.0.0'
+    compile 'com.amap.api:location:3.3.0'
+    compile 'cn.jiguang.sdk:jpush:3.0.3'
+    compile 'cn.jiguang.sdk:jcore:1.1.1'
+    testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+}

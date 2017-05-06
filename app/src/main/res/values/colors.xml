@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="test">#D0D0D0</color>
+    <color name="BG">#f7f7fa</color>
+    <color name="LINE">#d8d8d8</color>
+    <color name="SG_U_B">#ffffff</color>
+    <color name="SG_U_F">#333333</color>
+    <color name="SG_S_B">#9e9e9e</color>
+    <color name="SG_S_F">#ffffff</color>
+    <color name="NAV_B">#f7f7fa</color>
+    <color name="NAV_F">#333333</color>
+    <color name="TAB_B">#f7f7fa</color>
+    <color name="TAB_F">#808080</color>
+    <color name="BAR_B">#333333</color>
+    <color name="BAR_F">#FFFFFF</color>
+    <color name="UNIT_DZ">#4cc898</color>
+    <color name="UNIT_ZZ">#808080</color>
+    <color name="UNIT_SD">#f7b51f</color>
+    <color name="UNIT_WCL">#c1c1c1</color>
+    <color name="H">#000000</color>
+    <color name="T">#333333</color>
+    <color name="L">#808080</color>
+    <color name="M">#FD9507</color>
+    <color name="W">#FFF</color>
+    <color name="V">#feab04</color>
+    <color name="P">#d0cfd4</color>
+    <color name="blur_bg">#FFFAF0</color>
+    <color name="black">#000000</color>
+    <color name="grey">#808080</color>
+    <color name="grey_sp">#3e3e3e</color>
+    <color name="right_bg">#696969</color>
+    <color name="Red">#fe403d</color>
+    <color name="themeColor">#30B644</color>
+</resources>

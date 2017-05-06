@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ios="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_data_people_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.share.phone.DataPeopleListActivity">
+
+    <ios.ui.UINavigationBar
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp" />
+
+    <!--<uc.ListRow-->
+    <!--android:id="@+id/SearchRow"-->
+    <!--android:background="@color/SG_S_B"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!---->
+    <!--ios:showarrow="false">-->
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="@color/LINE"
+        android:layout_below="@id/navigationBar">
+
+        <SearchView
+            android:id="@+id/SearchBar"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:gravity="bottom"
+            android:layout_margin="15dp"
+            android:background="@drawable/boder_edittext"
+            android:queryHint="搜索备件" />
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/rs_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/l1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/rs_listview"
+        android:background="@color/LINE" />
+</RelativeLayout>

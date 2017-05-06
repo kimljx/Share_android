@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ios="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_my"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.share.phone.AdminActivity">
+
+    <ios.ui.UINavigationBar
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        ios:hideback="true" />
+
+    <uc.TableHeader
+        android:id="@+id/header"
+        android:layout_below="@id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:orientation="vertical">
+
+        <uc.ListRow
+            android:id="@+id/ad_myprofile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:onClick="onClick"
+            ios:marginleftlength="15"
+            ios:showarrow="true">
+
+            <TextView
+                android:id="@+id/my1"
+                style="@style/H2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:text="个人信息" />
+
+            <TextView
+                style="@style/L4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@id/my1"
+                android:text="查看和修改个人信息" />
+
+        </uc.ListRow>
+
+        <uc.ListRow
+            android:id="@+id/ad_staff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:onClick="onClick"
+            ios:marginleftlength="15"
+            ios:showarrow="true">
+
+            <TextView
+                android:id="@+id/staff1"
+                style="@style/H2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:text="员工管理" />
+
+            <TextView
+                style="@style/L4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/staff1"
+                android:layout_marginBottom="5dp"
+                android:text="查看和管理下级员工" />
+
+        </uc.ListRow>
+
+        <uc.ListRow
+            android:id="@+id/ad_leave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:onClick="onClick"
+            ios:showarrow="true">
+
+            <TextView
+                android:id="@+id/leave1"
+                style="@style/H2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:text="请假审批" />
+
+            <TextView
+                style="@style/L4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@id/leave1"
+                android:text="审批下级员工请假" />
+
+        </uc.ListRow>
+        <uc.ListRow
+            android:id="@+id/ad_myleave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:onClick="onClick"
+            ios:showarrow="true">
+
+            <TextView
+                android:id="@+id/myleave"
+                style="@style/H2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:text="我的假条" />
+
+            <TextView
+                style="@style/L4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@id/myleave"
+                android:text="查看我的请假记录" />
+        </uc.ListRow>
+    </LinearLayout>
+
+
+</RelativeLayout>

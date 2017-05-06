@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ios="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_fault_form"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="cn.share.phone.FaultFormActivity">
+
+    <ios.ui.UINavigationBar
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp" />
+
+    <uc.TableHeader
+        android:id="@+id/th1"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        ios:title="请输入设备编号" />
+
+    <uc.ListRow
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        ios:showarrow="false">
+
+        <EditText
+            android:id="@+id/nameID"
+            style="@style/H2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:background="@null" />
+
+        <ImageView
+            android:id="@+id/scan"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:onClick="scanImg"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/icon_scan" />
+    </uc.ListRow>
+
+
+    <uc.TableHeader
+        android:id="@+id/th2"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        ios:title="设备名称" />
+
+    <uc.ListRow
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        ios:showarrow="false">
+
+        <TextView
+            android:id="@+id/repair_name"
+            style="@style/H2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </uc.ListRow>
+
+
+    <uc.TableHeader
+        android:id="@+id/th3"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        ios:title="检修人员处理结果" />
+
+    <uc.ListRow
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        ios:showarrow="false">
+
+        <EditText
+            android:id="@+id/Repair"
+            style="@style/H2"
+            android:hint="请输入内容"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@null"
+            android:gravity="start" />
+    </uc.ListRow>
+
+    <uc.TableHeader
+        android:id="@+id/th4"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        ios:title="使用备件" />
+
+    <uc.ListRow
+        android:id="@+id/spareRow"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:onClick="sparerRow"
+        ios:showarrow="true">
+
+        <TextView
+            android:id="@+id/spare"
+            style="@style/H2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </uc.ListRow>
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:sp="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_fault_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.share.phone.FaultListActivity">
+
+    <ios.ui.UINavigationBar
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp" />
+
+    <uc.SwipeListView
+        android:id="@+id/fault_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="1dp"
+        android:cacheColorHint="#000000"
+        android:divider="#dddbdb"
+        android:dividerHeight="1dp"
+        sp:right_width="60dp"
+        android:layout_below="@id/navigationBar"
+        android:background="@color/BG">
+
+    </uc.SwipeListView>
+</RelativeLayout>
