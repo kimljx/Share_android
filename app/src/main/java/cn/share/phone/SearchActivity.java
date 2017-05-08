@@ -42,7 +42,7 @@ public class SearchActivity extends PGACTIVITY {
     private AMap aMap;
     private LinearLayout.LayoutParams mParams;
     private LinearLayout linearLayout;
-    private LatLng centerCDpoint = new LatLng(39.90937,116.37536);// (纬度，经度)
+    private LatLng centerCDpoint = new LatLng(30.697218,104.073694);// (纬度，经度)
     String start, end;
 
     @Override
