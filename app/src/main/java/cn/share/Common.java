@@ -14,10 +14,12 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Common {
-    public static final String URL_BASE = "http://120.25.202.192:80/ssm";
+    public static final String URL_BASE = "http://120.25.202.192:80/share";
+
     //不用读取TOKEN的API
     public static final String[] APIS_GUEST =
-            new String[]{"login","register","user","Collects","Comments","allMessage"};
+            new String[]{"login","register","user"
+                    ,"commentList","collectList"};
 
 
     //要设置（改变）TOKEN的API
@@ -43,8 +45,11 @@ public class Common {
     public static final String MSG_LEAVEADDREFESH = "LEAVEADDREFESH";
     public static final String MSG_MESSAGEREFESH = "MESSAGEREFESH";
 
+    public static String MSG_HOMELIST = "HOMELIST";
+
     //全局常量
     public static final int PAGESIZE = 20;
+
 
     public static int getVersionCode(Context context)//获取版本号(内部识别号)
     {

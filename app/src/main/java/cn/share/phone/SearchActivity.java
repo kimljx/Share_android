@@ -13,12 +13,14 @@ import android.widget.Toast;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.AMapOptions;
 import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.PolylineOptions;
+
+import cn.share.Location;
 import cn.share.R;
-import cn.share.RestBLL;
 import cn.share.phone.uc.PGACTIVITY;
 import cn.vipapps.CALLBACK;
 import cn.vipapps.STRING;
@@ -31,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class StaffTraceActivity extends PGACTIVITY {
+public class SearchActivity extends PGACTIVITY {
 
 
     private String staffId;
@@ -40,15 +42,13 @@ public class StaffTraceActivity extends PGACTIVITY {
     private AMap aMap;
     private LinearLayout.LayoutParams mParams;
     private LinearLayout linearLayout;
-    private LatLng centerCDpoint = new LatLng(30.723342, 103.825434);// 国色天香(纬度，经度)
+    private LatLng centerCDpoint = new LatLng(39.90937,116.37536);// (纬度，经度)
     String start, end;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_staff_trace);
-        staffId = getIntent().getStringExtra("staffId");
-        staffName = getIntent().getStringExtra("staffName");
         linearLayout = (LinearLayout) findViewById(R.id.activity_staff_trace);
 //        mMapView = (MapView) findViewById(R.id.mMapView);
         initialCenter();
@@ -57,119 +57,91 @@ public class StaffTraceActivity extends PGACTIVITY {
                 LinearLayout.LayoutParams.MATCH_PARENT);
         linearLayout.addView(mMapView, mParams);
 //        AMap aMap = mMapView.getMap();
+
         init();
-        Log.e("StaffTraceActivity: ", sHA1(context));
+        Log.e("SearchActivity: ", sHA1(context));
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        this.navigationBar().title(staffName);
-        this.navigationBar().rightNavButton("时间段", new CALLBACK() {
-            @Override
-            public void run(boolean isError, Object result) {
-                Intent intent = new Intent(StaffTraceActivity.this, StaffTraceTimeActivity.class);
-                startActivityForResult(intent, 1);
-            }
-        });
+        this.navigationBar().title("定位");
+
     }
 
     ArrayList<LatLng> latLngs = new ArrayList<LatLng>();
 
     private void init() {
+
         if (aMap == null) {
             aMap = mMapView.getMap();
         }
+        aMap.setLocationSource(new LocationSource() {
+            @Override
+            public void activate(OnLocationChangedListener onLocationChangedListener) {
+
+            }
+
+            @Override
+            public void deactivate() {
+
+            }
+        });
+        aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
+        // 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
+        aMap.setMyLocationEnabled(true);
+        // 设置定位的类型为定位模式 ，可以由定位、跟随或地图根据面向方向旋转几种
+        aMap.setMyLocationType(AMap.LOCATION_TYPE_LOCATE);
+
         aMap.moveCamera(CameraUpdateFactory.zoomTo(16));
     }
 
-    /**
-     * 在地图上画线
-     */
-    public void setUpMap(List<LatLng> list) {
+//    /**
+//     * 在地图上画线
+//     */
+//    public void setUpMap(List<LatLng> list) {
+//
+//        if (list.size() > 0) {
+//
+//            PolylineOptions polt = new PolylineOptions();
+//
+//            for (int i = 0; i < list.size(); i++) {
+//
+//                polt.add(list.get(i));
+//
+//            }
+//            polt.width(5).geodesic(true).color(Color.RED);
+//            aMap.addPolyline(polt);
+//
+//        } else {
+//
+//            Toast.makeText(this, "没有移动轨迹", Toast.LENGTH_LONG).show();
+//        }
+//
+//    }
 
-        if (list.size() > 0) {
-
-            PolylineOptions polt = new PolylineOptions();
-
-            for (int i = 0; i < list.size(); i++) {
-
-                polt.add(list.get(i));
-
-            }
-            polt.width(5).geodesic(true).color(Color.RED);
-            aMap.addPolyline(polt);
-
-        } else {
-
-            Toast.makeText(this, "没有移动轨迹", Toast.LENGTH_LONG).show();
-        }
-
-    }
-
-    void clearTrace(){
-        latLngs.clear();
-        aMap.clear();
-    }
+//    void clearTrace(){
+//        latLngs.clear();
+//        aMap.clear();
+//    }
 
     private void initialCenter() {
+//        Location.getInstance().startPosition(new CALLBACK<LatLng>() {
+//            @Override
+//            public void run(boolean isError, LatLng result) {
+//                centerCDpoint = result;
+//
+//            }
+//        });
+//        centerCDpoint=new LatLng(
+//                aMap.getMyLocation().getLatitude(),aMap.getMyLocation().getLongitude()
+//        ) ;
         AMapOptions aOptions = new AMapOptions();
         aOptions.camera(new CameraPosition(centerCDpoint, 10f, 0, 0));
         mMapView = new MapView(this, aOptions);
 
     }
 
-    private void getStaffPosition(JSONArray trace) {
-        latLngs.clear();
-        if (trace!=null) {
-            for (int i = 0; i < trace.length(); i++) {
-                String content = trace.optJSONObject(i).optString("content");
-
-                if (content == null || content == "") {
-                    continue;
-                }
-                Object[] contents = STRING.parse(content, ",");
-                if (contents == null || contents.length < 2) {
-                    continue;
-                }
-                double v = Double.parseDouble(contents[0].toString());
-                double v1 = Double.parseDouble(contents[1].toString());
-                latLngs.add(new LatLng(v, v1));
-            }
-        }
-
-//        latLngs.add(new LatLng(30.727694, 103.828962));
-//        latLngs.add(new LatLng(30.721726, 103.82907));
-//        latLngs.add(new LatLng(30.718774, 103.825637));
-//        latLngs.add(new LatLng(30.723342, 103.825434));
-        setUpMap(latLngs);
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            if (data!=null) {
-                clearTrace();
-                String sta = data.getStringExtra("start");
-                String end = data.getStringExtra("end");
-                RestBLL.get_staff_position(sta, end, staffId, new CALLBACK<JSONArray>() {
-                    @Override
-                    public void run(boolean isError, JSONArray result) {
-                        Log.e("get_staff_position: ", result + "");
-                        if (result.length() < 1) {
-
-                            return;
-                        }
-                        getStaffPosition(result);
-                    }
-                });
-            }
-        }
-
-
-    }
 
     @Override
     protected void onResume() {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
     android:background="@color/W"
     android:gravity="center_horizontal">
-
 
     <ios.ui.UINavigationBar
         android:id="@+id/navigationBar"
@@ -58,23 +58,22 @@
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
         android:layout_marginTop="10dp"
-        android:text="@string/btn_login"
+        android:text="立即注册"
         android:textColor="#fff"
         android:textSize="20sp" />
 
-
-    <TextView
-        android:id="@+id/txt_lijizc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/btn_guestlogin_login"
-        android:layout_marginRight="35dp"
-        android:layout_marginTop="15dp"
-        android:clickable="true"
-        android:text="立即注册"
-        android:textColor="#4099C1" />
+    <!--<TextView-->
+    <!--android:id="@+id/txt_guestlogin_password"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_below="@id/btn_guestlogin_login"-->
+    <!--android:layout_marginRight="35dp"-->
+    <!--android:layout_marginTop="15dp"-->
+    <!--android:clickable="true"-->
+    <!--android:text="@string/tv_code_password"-->
+    <!--android:textColor="#4099C1" />-->
 
     <TextView
         style="@style/W3"
@@ -84,6 +83,5 @@
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="@string/login_bottom" />
-
 
 </RelativeLayout>

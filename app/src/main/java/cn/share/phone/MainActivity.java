@@ -31,8 +31,8 @@ public class MainActivity extends ACTIVITY {
     final String[] tabTitles = new String[]{"首页", "消息", "", "发现", "我的"};
     final int[] tabIcons = new int[]{R.mipmap.menu_message_, R.mipmap.menu_offer, R.mipmap.menu_work,
             R.mipmap.menu_admain, R.mipmap.sub_visit};
-    final Class[] tabClasses = new Class[]{MessageListActivity.class, JobActivity.class, WorkActivity.class,
-            AdminActivity.class, MyActivity.class};
+    final Class[] tabClasses = new Class[]{HomeListActivity.class, MessageListActivity.class, ShareActivity.class,
+            SearchActivity.class, MyActivity.class};
     int tintColor;
 
     TabHost.OnTabChangeListener onTabChangeListener = new TabHost.OnTabChangeListener() {

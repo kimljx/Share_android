@@ -111,24 +111,23 @@
         <activity android:name=".phone.MainActivity" />
         <activity android:name=".phone.MessageListActivity" />
         <activity android:name=".phone.AdminActivity" />
-        <activity android:name=".phone.JobActivity" />
+        <activity android:name=".phone.HomeDetailActivity" />
         <activity
-            android:name=".phone.WorkActivity"
+            android:name=".phone.ShareActivity"
             android:theme="@android:style/Theme.Black" />
         <activity android:name=".phone.MyActivity" />
         <activity android:name=".phone.StaffListActivity" />
         <activity android:name=".phone.LeaveListActivity" />
         <activity android:name=".phone.MyPasswordActivity" />
-        <activity android:name=".phone.StaffTraceActivity" />
+        <activity android:name=".phone.SearchActivity" />
         <activity android:name=".phone.RegisterActivity" />
-        <activity android:name=".phone.CustomScanActivity" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
             tools:replace="screenOrientation" />
         <activity android:name=".phone.SignInActivity" />
-        <activity android:name=".phone.FaultListActivity" />
-        <activity android:name=".phone.FaultFormActivity" />
+        <activity android:name=".phone.HomeListActivity" />
+        <activity android:name=".phone.CommentActivity" />
         <activity android:name=".phone.RepairListActivity" />
         <activity android:name=".phone.RepairFormActivity" />
         <activity
@@ -148,10 +147,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".phone.LeaveDetailActivity" />
         <activity android:name=".phone.StaffLeavesActivity" />
-        <activity android:name=".phone.StaffTraceTimeActivity" />
+        <activity android:name=".phone.AddShareActivity" />
         <activity android:name=".phone.LeaveAddActivity" />
-        <activity android:name=".phone.SignOutActivity" />
-        <activity android:name=".phone.MyLeavesActivity"></activity>
+        <activity android:name=".phone.MyLeavesActivity" />
+        <activity android:name=".phone.MyProfileActivity"></activity>
+        <activity android:name=".phone.GuestRegisterActivity"></activity>
     </application>
 
 </manifest>

@@ -40,11 +40,7 @@ public class MessageListActivity extends PGACTIVITY {
         MESSAGE.receive(Common.MSG_MESSAGEREFESH, new CALLBACK<Bundle>() {
             @Override
             public void run(boolean isError, Bundle result) {
-//                if (select == 0) {
-//                    type = 0;
-//                } else {
-//                    type = 100;
-//                }
+
                 onStart();
                 reloadData();
 
@@ -59,7 +55,7 @@ public class MessageListActivity extends PGACTIVITY {
 
             @Override
             public void onLoadMore() {
-                loadData();
+
             }
         });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -104,8 +100,8 @@ public class MessageListActivity extends PGACTIVITY {
                     msgPH = (MSGPH) view.getTag();
                 }
                 JSONObject message = getItem(i);
-                msgPH.message.setText(message.optString("title"));
-                msgPH.time.setText(message.optString("ctime"));
+                msgPH.message.setText(message.optString("notificationInfo"));
+//                msgPH.time.setText(message.optString("ctime"));
                 return view;
             }
         };
@@ -135,7 +131,7 @@ public class MessageListActivity extends PGACTIVITY {
                 if (position == 0) {
                     type = 0;
                 } else {
-                    type = 100;
+                    type = 1;
                 }
                 select = position;
                 reloadData();
@@ -150,37 +146,22 @@ public class MessageListActivity extends PGACTIVITY {
         start = 0;
         allMessage = new JSONArray();
         listView.setPullLoadEnable(false);
-        loadData();
-
-    }
-
-    private void loadData() {
-
-        RestBLL.get_msg_list(start, type, new CALLBACK<JSONArray>() {
+        RestBLL.notificationList(String.valueOf(type),new CALLBACK<JSONArray>() {
             @Override
-            public void run(boolean isError, JSONArray messages) {
-                listView.stopLoadMore();
-                listView.stopRefresh();
+            public void run(boolean isError, JSONArray result) {
                 if (isError) {
+                    listView.stopRefresh();
                     return;
                 }
-                /*
-
-                 */
-                start +=PAGESIZE;
-                if (messages.length() < PAGESIZE ) {
-                    listView.setPullLoadEnable(false);
-                }else {
-                    listView.setPullLoadEnable(true);
-                }
-                for (int i = 0; i < messages.length(); i++) {
-                    allMessage.put(messages.opt(i));
-                }
+                //更新数据
+                allMessage = result;
                 adapter.notifyDataSetChanged();
+                listView.stopRefresh();
             }
         });
 
     }
+
 
 
     public class MSGPH {

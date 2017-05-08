@@ -71,7 +71,7 @@ public class RepairFormActivity extends PGACTIVITY {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repair_form);
         ButterKnife.bind(this);
-        nameID.setOnKeyListener(onKey);
+
         nameID.addTextChangedListener(textWatcher);
     }
 
@@ -89,7 +89,7 @@ public class RepairFormActivity extends PGACTIVITY {
         @Override
         public void afterTextChanged(Editable s) {
             id = nameID.getText().toString();
-            getNameWithId();
+
         }
     };
 
@@ -115,7 +115,7 @@ public class RepairFormActivity extends PGACTIVITY {
                     Toast.makeText(this, "扫描成功", Toast.LENGTH_LONG).show();
                     // ScanResult 为 获取到的字符串
                     qrcode = intentResult.getContents();
-                    getNameWithCode();
+
                     Log.e("onActivityResult: ",qrcode );
                 }
             } else {
@@ -145,62 +145,20 @@ public class RepairFormActivity extends PGACTIVITY {
                     type = "0";
                     ids = null;
                 }
-                RestBLL.mod_breakdown(type,ids, content,assets_id,1, new CALLBACK<JSONObject>() {
-                    @Override
-                    public void run(boolean isError, JSONObject result) {
-                        DIALOG.alert("提交成功", new CALLBACK<Object>() {
-                            @Override
-                            public void run(boolean isError, Object result) {
-                                MESSAGE.send(Common.MSG_FAULTREFESH,null);
-                                finish();
-                            }
-                        });
-                    }
-                });
+//                RestBLL.mod_breakdown(type,ids, content,assets_id,1, new CALLBACK<JSONObject>() {
+//                    @Override
+//                    public void run(boolean isError, JSONObject result) {
+//                        DIALOG.alert("提交成功", new CALLBACK<Object>() {
+//                            @Override
+//                            public void run(boolean isError, Object result) {
+//                                MESSAGE.send(Common.MSG_FAULTREFESH,null);
+//                                finish();
+//                            }
+//                        });
+//                    }
+//                });
             }
         });
     }
-
-
-    void getNameWithCode() {
-        RestBLL.get_device_info(qrcode, new CALLBACK<JSONObject>() {
-            @Override
-            public void run(boolean isError, JSONObject result) {
-                String name = result.optJSONObject("device_info").optString("name");
-                repair_name.setText(name);
-                nameID.setText(result.optJSONObject("device_info").optString("id"));
-            }
-        });
-    }
-
-    void getNameWithId() {
-        RestBLL.get_device_info2(id, new CALLBACK<JSONObject>() {
-            @Override
-            public void run(boolean isError, JSONObject result) {
-                String name = result.optJSONObject("device_info").optString("name");
-                repair_name.setText(name);
-            }
-        });
-    }
-
-    View.OnKeyListener onKey = new View.OnKeyListener() {
-
-        @Override
-        public boolean onKey(View v, int i, KeyEvent keyEvent) {
-
-            if (KeyEvent.KEYCODE_ENTER == i) {
-                id = nameID.getText().toString();
-                getNameWithId();
-                InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                if (imm.isActive()) {
-                    imm.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
-                }
-                return true;
-
-            }
-            return false;
-        }
-
-    };
 
 }

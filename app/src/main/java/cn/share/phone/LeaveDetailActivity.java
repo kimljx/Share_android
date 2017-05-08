@@ -77,19 +77,19 @@ public class LeaveDetailActivity extends PGACTIVITY {
         DIALOG.confirm("确认提交？", new CALLBACK<Object>() {
             @Override
             public void run(boolean isError, Object result) {
-                RestBLL.check_leaves(leaveId, remarks, status, new CALLBACK<JSONObject>() {
-                    @Override
-                    public void run(boolean isError, JSONObject result) {
-
-                        finish();
-
-                    }
-                });
-            }
-        }, new CALLBACK<Object>() {
-            @Override
-            public void run(boolean isError, Object result) {
-
+//                RestBLL.check_leaves(leaveId, remarks, status, new CALLBACK<JSONObject>() {
+//                    @Override
+//                    public void run(boolean isError, JSONObject result) {
+//
+//                        finish();
+//
+//                    }
+//                });
+//            }
+//        }, new CALLBACK<Object>() {
+//            @Override
+//            public void run(boolean isError, Object result) {
+//
             }
         });
 

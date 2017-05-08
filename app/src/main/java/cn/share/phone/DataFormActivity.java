@@ -46,7 +46,7 @@ public class DataFormActivity extends PGACTIVITY {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_form);
         ButterKnife.bind(this);
-        job_name.setText(CONFIG.getString(Common.CONFIG_EQUIPMENT));
+//        job_name.setText(CONFIG.getString(Common.CONFIG_EQUIPMENT));
     }
 
     @Override
@@ -58,17 +58,17 @@ public class DataFormActivity extends PGACTIVITY {
             public void run(boolean isError, Object result) {
                 String time_line = time.getText().toString();
                 String count = number.getText().toString();
-                RestBLL.device_data_upload(time_line, count, new CALLBACK<JSONObject>() {
-                    @Override
-                    public void run(boolean isError, JSONObject result) {
-                        DIALOG.alert("上报成功！", new CALLBACK<Object>() {
-                            @Override
-                            public void run(boolean isError, Object result) {
-                                finish();
-                            }
-                        });
-                    }
-                });
+//                RestBLL.device_data_upload(time_line, count, new CALLBACK<JSONObject>() {
+//                    @Override
+//                    public void run(boolean isError, JSONObject result) {
+//                        DIALOG.alert("上报成功！", new CALLBACK<Object>() {
+//                            @Override
+//                            public void run(boolean isError, Object result) {
+//                                finish();
+//                            }
+//                        });
+//                    }
+//                });
             }
         });
     }

@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import cn.share.Common;
 import cn.share.R;
@@ -15,12 +16,14 @@ import cn.share.RestBLL;
 import cn.share.phone.uc.PGACTIVITY;
 import cn.vipapps.CALLBACK;
 import cn.vipapps.CONFIG;
+import cn.vipapps.DIALOG;
 
 import org.json.JSONObject;
 
 public class GuestLoginActivity extends PGACTIVITY {
 
     EditText  etUserName, etPassword;
+    TextView tvlizc;//立即注册
     Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +33,18 @@ public class GuestLoginActivity extends PGACTIVITY {
         etUserName = (EditText) findViewById(R.id.usernameEditText);
         etPassword = (EditText) findViewById(R.id.passwordEditText);
         button = (Button)findViewById(R.id.btn_guestlogin_login) ;
+        tvlizc=(TextView)findViewById(R.id.txt_lijizc) ;
         button.setEnabled(true);
         //
 
         isLogin();
+        tvlizc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(GuestLoginActivity.this, GuestRegisterActivity.class));//跳转到注册界面
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,23 +54,21 @@ public class GuestLoginActivity extends PGACTIVITY {
                         button.setEnabled(true);
                     }
                 }, 2000);
-//                etComName.setVisibility(View.INVISIBLE);
-//                etComName.setText("ldly");
-//                etUserName.setText("wxy");
-//                etPassword.setText("admin@1234");
                 final String name = etUserName.getText().toString();
                 final String password = etPassword.getText().toString();
+                Log.e("onClick: ", name+password);
                 RestBLL.login(name, password, new CALLBACK<JSONObject>() {
                     @Override
                     public void run(boolean isError, JSONObject result) {
                         if (isError) {
                             return;
                         }
+                        DIALOG.toast("登录成功！");
                         CONFIG.set("USERNAME",name);
                         CONFIG.set("PASSWORD",password);
                         Log.e("run: ", CONFIG.getString(Common.CONFIG_TOKEN));
-                        Intent intent = new Intent(GuestLoginActivity.this, MainActivity.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(GuestLoginActivity.this, MainActivity.class);
+//                        startActivity(intent);
                         finish();
                     }
                 });

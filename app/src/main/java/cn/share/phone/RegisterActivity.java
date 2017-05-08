@@ -62,70 +62,70 @@ public class RegisterActivity extends PGACTIVITY {
     }
 
     void reloadData(){
-        RestBLL.get_staff_info(staffId, new CALLBACK<JSONObject>() {
-            @Override
-            public void run(boolean isError, JSONObject result) {
-                Log.e("run: get_staff_info", result+"");
-                JSONObject work_info = result.optJSONObject("work_info");
-                JSONArray works = work_info.optJSONArray("work");
-                JSONObject work = new JSONObject();
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT, ACTIVITY.dp2px(25));
-                if (works!=null) {
-                    for (int i = 0;i<works.length();i++) {
-                        TextView tv = new TextView(RegisterActivity.this);
-                        tv.setLayoutParams(lp);
-//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                            tv.setTextAppearance(R.style.H2);
-//                        }
-                        tv.setTextColor(getResources().getColor(R.color.black));
-                        tv.setTextSize(ACTIVITY.dp2px(5));
-                        tv.setGravity(View.TEXT_ALIGNMENT_CENTER);
-                        work = works.optJSONObject(i);
-                        tv.setText(work.optString("name"));
-                        shiftsLayout.addView(tv);
-                    }
-                }else {
-                    shiftsLayout.setLayoutParams(new RelativeLayout.LayoutParams(
-                            RelativeLayout.LayoutParams.MATCH_PARENT,ACTIVITY.dp2px(25)));
-                }
-                Log.e("run: get_staff_info", work_info+"");
-                String userId = result.optString("id");
-                name.setText(result.optString("name"));
-                name2.setText(result.optString("account"));
-                phone.setText(result.optString("phone"));
-                //班次
-//                if (works !=null){
-//                    shifts.setText(works.optString("name"));
-//                }if
-//                if (work.optString("name")!=null){
-//                    shifts.setText(work.optString("name"));
+//        RestBLL.get_staff_info(staffId, new CALLBACK<JSONObject>() {
+//            @Override
+//            public void run(boolean isError, JSONObject result) {
+//                Log.e("run: get_staff_info", result+"");
+//                JSONObject work_info = result.optJSONObject("work_info");
+//                JSONArray works = work_info.optJSONArray("work");
+//                JSONObject work = new JSONObject();
+//                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+//                        ViewGroup.LayoutParams.MATCH_PARENT, ACTIVITY.dp2px(25));
+//                if (works!=null) {
+//                    for (int i = 0;i<works.length();i++) {
+//                        TextView tv = new TextView(RegisterActivity.this);
+//                        tv.setLayoutParams(lp);
+////                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+////                            tv.setTextAppearance(R.style.H2);
+////                        }
+//                        tv.setTextColor(getResources().getColor(R.color.black));
+//                        tv.setTextSize(ACTIVITY.dp2px(5));
+//                        tv.setGravity(View.TEXT_ALIGNMENT_CENTER);
+//                        work = works.optJSONObject(i);
+//                        tv.setText(work.optString("name"));
+//                        shiftsLayout.addView(tv);
+//                    }
+//                }else {
+//                    shiftsLayout.setLayoutParams(new RelativeLayout.LayoutParams(
+//                            RelativeLayout.LayoutParams.MATCH_PARENT,ACTIVITY.dp2px(25)));
 //                }
-
-                duty.setText(work.optString("name"));
-                //
-                String re = work_info.optString("report_count");
-                String sta = work_info.optString("work_start");
-                String en = work_info.optString("work_end");
-                report_real.setText(re+"次");
-                up_time.setText(sta);
-                down_time.setText(en);
-                String url = String.format("user_%s.png",userId);
-                PGAJAX.getImage(url,true, new CALLBACK<Bitmap>() {
-                    @Override
-                    public void run(boolean isError, Bitmap result) {
-                        if (isError){
-                            avatar.setImageDrawable(getResources().getDrawable(R.mipmap.avatar));
-                            return;
-                        }
-                        if (result == null){
-                            avatar.setImageDrawable(getResources().getDrawable(R.mipmap.avatar));
-                            return;
-                        }
-                        avatar.setImageBitmap(result);
-                    }
-                });
-            }
-        });
+//                Log.e("run: get_staff_info", work_info+"");
+//                String userId = result.optString("id");
+//                name.setText(result.optString("name"));
+//                name2.setText(result.optString("account"));
+//                phone.setText(result.optString("phone"));
+//                //班次
+////                if (works !=null){
+////                    shifts.setText(works.optString("name"));
+////                }if
+////                if (work.optString("name")!=null){
+////                    shifts.setText(work.optString("name"));
+////                }
+//
+//                duty.setText(work.optString("name"));
+//                //
+//                String re = work_info.optString("report_count");
+//                String sta = work_info.optString("work_start");
+//                String en = work_info.optString("work_end");
+//                report_real.setText(re+"次");
+//                up_time.setText(sta);
+//                down_time.setText(en);
+//                String url = String.format("user_%s.png",userId);
+//                PGAJAX.getImage(url,true, new CALLBACK<Bitmap>() {
+//                    @Override
+//                    public void run(boolean isError, Bitmap result) {
+//                        if (isError){
+//                            avatar.setImageDrawable(getResources().getDrawable(R.mipmap.avatar));
+//                            return;
+//                        }
+//                        if (result == null){
+//                            avatar.setImageDrawable(getResources().getDrawable(R.mipmap.avatar));
+//                            return;
+//                        }
+//                        avatar.setImageBitmap(result);
+//                    }
+//                });
+//            }
+//        });
     }
 }

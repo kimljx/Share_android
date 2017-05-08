@@ -112,15 +112,15 @@ public class StaffLeavesActivity extends PGACTIVITY {
                         JSONObject fault = getItem(position);
                         String id = fault.optString("id");
                         Log.e( "onClick: ", id);
-                        RestBLL.delete_leaves(id, new CALLBACK<JSONObject>() {
-                            @Override
-                            public void run(boolean isError, JSONObject result) {
-                                if (isError){
-                                    return;
-                                }
-                                reloadData();
-                            }
-                        });
+//                        RestBLL.delete_leaves(id, new CALLBACK<JSONObject>() {
+//                            @Override
+//                            public void run(boolean isError, JSONObject result) {
+//                                if (isError){
+//                                    return;
+//                                }
+//                                reloadData();
+//                            }
+//                        });
 
                     }
                 });
@@ -150,29 +150,29 @@ public class StaffLeavesActivity extends PGACTIVITY {
 
     private void loadData() {
 //stuffId
-        RestBLL.get_staff_leaves(start, type, staffId, new CALLBACK<JSONArray>() {
-            @Override
-            public void run(boolean isError, JSONArray messages) {
-                listView.stopLoadMore();
-                listView.stopRefresh();
-                if (isError) {
-                    return;
-                }
-                /*
-
-                 */
-                start += PAGESIZE;
-                if (messages.length() < PAGESIZE) {
-                    listView.setPullLoadEnable(false);
-                }else {
-                    listView.setPullLoadEnable(true);
-                }
-                for (int i = 0; i < messages.length(); i++) {
-                    allLeave.put(messages.opt(i));
-                }
-                adapter.notifyDataSetChanged();
-            }
-        });
+//        RestBLL.get_staff_leaves(start, type, staffId, new CALLBACK<JSONArray>() {
+//            @Override
+//            public void run(boolean isError, JSONArray messages) {
+//                listView.stopLoadMore();
+//                listView.stopRefresh();
+//                if (isError) {
+//                    return;
+//                }
+//                /*
+//
+//                 */
+//                start += PAGESIZE;
+//                if (messages.length() < PAGESIZE) {
+//                    listView.setPullLoadEnable(false);
+//                }else {
+//                    listView.setPullLoadEnable(true);
+//                }
+//                for (int i = 0; i < messages.length(); i++) {
+//                    allLeave.put(messages.opt(i));
+//                }
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
 
     }
 

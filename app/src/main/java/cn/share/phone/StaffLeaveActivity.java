@@ -55,22 +55,22 @@ public class StaffLeaveActivity extends PGACTIVITY {
     }
 
     void reloadData(){
-        RestBLL.get_leaves_info(leaveId, new CALLBACK<JSONObject>() {
-            @Override
-            public void run(boolean isError, JSONObject leave) {
-                Log.e("run: leave",leave+"" );
-                name.setText(leave.optString("account"));
-                time.setText(leave.optString("create_time"));
-                start.setText(leave.optString("start"));
-                end.setText(leave.optString("end"));
-                type.setText(Common.leaveType(leave.optString("type")));
-                status.setText(Common.approvalStatus(leave.optString("status")));
-                approver.setText(leave.optString("check_account"));
-                approval_time.setText(leave.optString("check_time"));
-                approval_adj.setText(leave.optString("remark"));
-                remarks.setText(leave.optString("content"));
-            }
-        });
+//        RestBLL.get_leaves_info(leaveId, new CALLBACK<JSONObject>() {
+//            @Override
+//            public void run(boolean isError, JSONObject leave) {
+//                Log.e("run: leave",leave+"" );
+//                name.setText(leave.optString("account"));
+//                time.setText(leave.optString("create_time"));
+//                start.setText(leave.optString("start"));
+//                end.setText(leave.optString("end"));
+//                type.setText(Common.leaveType(leave.optString("type")));
+//                status.setText(Common.approvalStatus(leave.optString("status")));
+//                approver.setText(leave.optString("check_account"));
+//                approval_time.setText(leave.optString("check_time"));
+//                approval_adj.setText(leave.optString("remark"));
+//                remarks.setText(leave.optString("content"));
+//            }
+//        });
     }
 
 }

@@ -121,29 +121,29 @@ public class RepairListActivity extends PGACTIVITY {
 
     private void loadData() {
 
-        RestBLL.get_device_mod_list(start, new CALLBACK<JSONArray>() {
-            @Override
-            public void run(boolean isError, JSONArray messages) {
-                listView.stopLoadMore();
-                listView.stopRefresh();
-                if (isError) {
-                    return;
-                }
-                /*
-
-                 */
-                start += PAGESIZE;
-                if (messages.length() < PAGESIZE) {
-                    listView.setPullLoadEnable(false);
-                }else {
-                    listView.setPullLoadEnable(true);
-                }
-                for (int i = 0; i < messages.length(); i++) {
-                    allRepair.put(messages.opt(i));
-                }
-                adapter.notifyDataSetChanged();
-            }
-        });
+//        RestBLL.get_device_mod_list(start, new CALLBACK<JSONArray>() {
+//            @Override
+//            public void run(boolean isError, JSONArray messages) {
+//                listView.stopLoadMore();
+//                listView.stopRefresh();
+//                if (isError) {
+//                    return;
+//                }
+//                /*
+//
+//                 */
+//                start += PAGESIZE;
+//                if (messages.length() < PAGESIZE) {
+//                    listView.setPullLoadEnable(false);
+//                }else {
+//                    listView.setPullLoadEnable(true);
+//                }
+//                for (int i = 0; i < messages.length(); i++) {
+//                    allRepair.put(messages.opt(i));
+//                }
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
 
     }
 

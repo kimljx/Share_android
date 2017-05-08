@@ -35,7 +35,7 @@
     <string name="xlistview_header_last_time">上次更新时间：</string>
     <string name="xlistview_footer_hint_normal">点击加载更多</string>
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
-    <string name="login_bottom">版权所有@2017 欢乐云</string>
+    <string name="login_bottom">版权所有@2017 J1026</string>
     <string name="mpw_old">请输入旧密码</string>
     <string name="mpw_new">请输入新密码</string>
     <string name="mpw_again">再次输入新密码</string>

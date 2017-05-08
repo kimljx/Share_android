@@ -54,15 +54,15 @@ dependencies {
     compile files('libs/AMap_Location_V3.3.0_20170118.jar')
     // 此处以JPush 3.0.3 版本为例。
     // 此处以JCore 1.1.1 版本为例。
+    //    compile 'com.amap.api:map3d-native:latest.integration'
+    //    compile 'com.amap.api:map3d:latest.integration'
+    //    compile 'com.amap.api:location:latest.integration'
     compile 'com.android.support:appcompat-v7:25.0.1'
     compile 'com.google.zxing:core:3.2.1'
     compile 'com.journeyapps:zxing-android-embedded:3.4.0'
     compile 'com.jakewharton:butterknife:8.5.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.2.0'
-//    compile 'com.amap.api:map3d-native:latest.integration'
-//    compile 'com.amap.api:map3d:latest.integration'
-//    compile 'com.amap.api:location:latest.integration'
     compile 'com.amap.api:map3d-native:5.0.0'
     compile 'com.amap.api:map3d:5.0.0'
     compile 'com.amap.api:location:3.3.0'
@@ -70,4 +70,5 @@ dependencies {
     compile 'cn.jiguang.sdk:jcore:1.1.1'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile files('libs/AMap_Location_V3.4.0_20170427.jar')
 }

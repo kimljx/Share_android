@@ -5,24 +5,22 @@
     android:id="@+id/activity_fault_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.share.phone.FaultListActivity">
+    tools:context="cn.share.phone.HomeListActivity">
 
     <ios.ui.UINavigationBar
         android:id="@+id/navigationBar"
         android:layout_width="match_parent"
         android:layout_height="44dp" />
 
-    <uc.SwipeListView
+    <uc.XListView
         android:id="@+id/fault_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="1dp"
-        android:cacheColorHint="#000000"
         android:divider="#dddbdb"
         android:dividerHeight="1dp"
-        sp:right_width="60dp"
         android:layout_below="@id/navigationBar"
         android:background="@color/BG">
 
-    </uc.SwipeListView>
+    </uc.XListView>
 </RelativeLayout>

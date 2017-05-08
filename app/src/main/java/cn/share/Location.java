@@ -8,6 +8,8 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.amap.api.maps.model.LatLng;
+
 import cn.vipapps.CALLBACK;
 import cn.vipapps.android.ACTIVITY;
 
@@ -45,9 +47,9 @@ public class Location {
                 if (amapLocation.getErrorCode() == 0) {
                     String w = Double.toString(amapLocation.getLatitude());//获取纬度
                     String j = Double.toString(amapLocation.getLongitude());//获取经度
-
+                    LatLng p = new LatLng(amapLocation.getLatitude(),amapLocation.getLongitude());
                     String position = w + "," + j;
-                    locationCallback.run(false, position);
+                    locationCallback.run(false, p);
                 } else {
                     locationCallback.run(true, null);
                     //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
@@ -60,13 +62,13 @@ public class Location {
     };
 
     //打开定位
-    public void startPosition(final CALLBACK<String> callback) {
+    public void startPosition(final CALLBACK<LatLng> callback) {
 
         locationCallback = callback;
         //设置精度
         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
         //设置定位间隔,单位毫秒,默认为2000ms，1200000
-        mLocationOption.setInterval(1200000);
+        mLocationOption.setInterval(2000);
         //设置定位参数
         mlocationClient.setLocationOption(mLocationOption);
         //设置定位回调监听

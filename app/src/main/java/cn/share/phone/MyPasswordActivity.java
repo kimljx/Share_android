@@ -45,7 +45,7 @@ public class MyPasswordActivity extends PGACTIVITY {
                         String old = mpw_old.getText().toString();
                         String news = mpw_new.getText().toString();
                         String again = mpw_again.getText().toString();
-                        RestBLL.mod_user_password(old, news, again, new CALLBACK<JSONObject>() {
+                        RestBLL.changePassword(old, news, again, new CALLBACK<JSONObject>() {
                             @Override
                             public void run(boolean isError, JSONObject result) {
                                 if (isError){

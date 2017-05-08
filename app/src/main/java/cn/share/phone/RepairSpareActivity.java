@@ -181,14 +181,14 @@ public class RepairSpareActivity extends PGACTIVITY {
     private void reloadData() {
         assets_copy = new JSONArray();
         assets_list = new JSONArray();
-        RestBLL.get_assets_list(new CALLBACK<JSONArray>() {
-            @Override
-            public void run(boolean isError, JSONArray result) {
-                assets_list = result;
-                assets_copy = assets_list;
-                adapter.notifyDataSetChanged();
-            }
-        });
+//        RestBLL.get_assets_list(new CALLBACK<JSONArray>() {
+//            @Override
+//            public void run(boolean isError, JSONArray result) {
+//                assets_list = result;
+//                assets_copy = assets_list;
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
 
     }
 

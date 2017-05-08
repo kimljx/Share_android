@@ -172,30 +172,30 @@ public class LeaveListActivity extends PGACTIVITY {
 
     private void loadData() {
 
-        RestBLL.get_check_leaves_list(start, type, new CALLBACK<JSONArray>() {
-            @Override
-            public void run(boolean isError, JSONArray messages) {
-                listView.stopLoadMore();
-                listView.stopRefresh();
-                if (isError) {
-                    return;
-                }
-                start += PAGESIZE;
-                if (messages.length() < PAGESIZE) {
-                    listView.setPullLoadEnable(false);
-                }else {
-                    listView.setPullLoadEnable(true);
-                }
-                /*
-                 */
-                for (int i = 0; i < messages.length(); i++) {
-                    allLeaves.put(messages.opt(i));
-//                    }
-
-                }
-                adapter.notifyDataSetChanged();
-            }
-        });
+//        RestBLL.get_check_leaves_list(start, type, new CALLBACK<JSONArray>() {
+//            @Override
+//            public void run(boolean isError, JSONArray messages) {
+//                listView.stopLoadMore();
+//                listView.stopRefresh();
+//                if (isError) {
+//                    return;
+//                }
+//                start += PAGESIZE;
+//                if (messages.length() < PAGESIZE) {
+//                    listView.setPullLoadEnable(false);
+//                }else {
+//                    listView.setPullLoadEnable(true);
+//                }
+//                /*
+//                 */
+//                for (int i = 0; i < messages.length(); i++) {
+//                    allLeaves.put(messages.opt(i));
+////                    }
+//
+//                }
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
 
     }
 

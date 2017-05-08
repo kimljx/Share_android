@@ -33,7 +33,7 @@ public class AdminActivity extends PGACTIVITY implements View.OnClickListener{
                 startActivity(new Intent(AdminActivity.this,MyActivity.class));
                 break;
             case R.id.ad_staff:
-                startActivity(new Intent(AdminActivity.this,StaffListActivity.class));
+//                startActivity(new Intent(AdminActivity.this,StaffListActivity.class));
                 break;
             case R.id.ad_leave:
                 startActivity(new Intent(AdminActivity.this,LeaveListActivity.class));

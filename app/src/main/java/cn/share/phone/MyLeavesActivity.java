@@ -118,16 +118,16 @@ public class MyLeavesActivity extends PGACTIVITY {
                         JSONObject fault = getItem(position);
                         String id = fault.optString("id");
                         Log.e( "onClick: ", id);
-                        RestBLL.delete_leaves(id, new CALLBACK<JSONObject>() {
-                            @Override
-                            public void run(boolean isError, JSONObject result) {
-                                if (isError){
-                                    return;
-                                }
-                                onStart();
-                                reloadData();
-                            }
-                        });
+//                        RestBLL.delete_leaves(id, new CALLBACK<JSONObject>() {
+//                            @Override
+//                            public void run(boolean isError, JSONObject result) {
+//                                if (isError){
+//                                    return;
+//                                }
+//                                onStart();
+//                                reloadData();
+//                            }
+//                        });
 
                     }
                 });
@@ -163,29 +163,29 @@ public class MyLeavesActivity extends PGACTIVITY {
     }
 
     private void loadData() {
-        RestBLL.get_leaves_list(start, type, new CALLBACK<JSONArray>() {
-            @Override
-            public void run(boolean isError, JSONArray messages) {
-                listView.stopLoadMore();
-                listView.stopRefresh();
-                if (isError) {
-                    return;
-                }
-                /*
-
-                 */
-                start+=PAGESIZE;
-                if (messages.length() < PAGESIZE) {
-                    listView.setPullLoadEnable(false);
-                }else {
-                    listView.setPullLoadEnable(true);
-                }
-                for (int i = 0; i < messages.length(); i++) {
-                    allLeave.put(messages.opt(i));
-                }
-                adapter.notifyDataSetChanged();
-            }
-        });
+//        RestBLL.get_leaves_list(start, type, new CALLBACK<JSONArray>() {
+//            @Override
+//            public void run(boolean isError, JSONArray messages) {
+//                listView.stopLoadMore();
+//                listView.stopRefresh();
+//                if (isError) {
+//                    return;
+//                }
+//                /*
+//
+//                 */
+//                start+=PAGESIZE;
+//                if (messages.length() < PAGESIZE) {
+//                    listView.setPullLoadEnable(false);
+//                }else {
+//                    listView.setPullLoadEnable(true);
+//                }
+//                for (int i = 0; i < messages.length(); i++) {
+//                    allLeave.put(messages.opt(i));
+//                }
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
 
     }
 

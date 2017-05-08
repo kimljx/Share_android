@@ -99,18 +99,18 @@ public class LeaveAddActivity extends PGACTIVITY {
                     DIALOG.alert("结束时间小于开始时间！");
                     return;
                 }
-                RestBLL.add_leaves(contents, starts, ends,typeId, new CALLBACK<JSONObject>() {
-                    @Override
-                    public void run(boolean isError, JSONObject result) {
-                        DIALOG.confirm("提交成功！", new CALLBACK<Object>() {
-                            @Override
-                            public void run(boolean isError, Object result) {
-                                MESSAGE.send(Common.MSG_LEAVEADDREFESH,null);
-                                finish();
-                            }
-                        });
-                    }
-                });
+//                RestBLL.add_leaves(contents, starts, ends,typeId, new CALLBACK<JSONObject>() {
+//                    @Override
+//                    public void run(boolean isError, JSONObject result) {
+//                        DIALOG.confirm("提交成功！", new CALLBACK<Object>() {
+//                            @Override
+//                            public void run(boolean isError, Object result) {
+//                                MESSAGE.send(Common.MSG_LEAVEADDREFESH,null);
+//                                finish();
+//                            }
+//                        });
+//                    }
+//                });
             }
         });
     }

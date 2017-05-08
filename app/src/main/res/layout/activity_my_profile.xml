@@ -1,239 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ios="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_my"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="cn.share.phone.AdminActivity">
 
     <ios.ui.UINavigationBar
         android:id="@+id/navigationBar"
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        ios:hideback="true"/>
+        ios:hideback="true" />
 
-    <ScrollView
+    <uc.TableHeader
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
+        android:layout_below="@id/navigationBar" />
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/navigationBar"
-        android:scrollbars="none">
-
+        android:layout_below="@id/header">
 
         <LinearLayout
-            android:id="@+id/L1"
+            android:id="@+id/mylogin"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
-            <RelativeLayout
-                android:id="@+id/re"
+            <uc.ListRow
+                android:id="@+id/up"
                 android:layout_width="match_parent"
-                android:layout_height="213dp"
-                android:background="@mipmap/my_bg">
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:onClick="onClick"
+                ios:marginleftlength="15"
+                ios:showarrow="true">
 
                 <uc.CircleImageView
                     android:id="@+id/mp_avatar"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:layout_centerInParent="true"
-                    android:src="@mipmap/menu_work" />
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="5dp"
+                    android:src="@mipmap/ic_launcher" />
 
                 <TextView
-                    android:id="@+id/mp_username"
-                    style="@style/W1"
+                    android:id="@+id/up_down1"
+                    style="@style/H3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/mp_avatar"
-                    android:layout_centerInParent="true"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_vertical" />
-                <TextView
-                    android:id="@+id/mp_name"
-                    android:textColor="#c8c8c8"
-                    android:textSize="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/mp_username"
-                    android:layout_centerInParent="true"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_vertical" />
+                    android:layout_marginTop="15dp"
+                    android:layout_toEndOf="@id/mp_avatar"
+                    android:text="luo" />
 
-            </RelativeLayout>
 
-            <TableLayout
+            </uc.ListRow>
 
+            <uc.ListRow
+                android:id="@+id/down"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/W"
-                android:stretchColumns="1">
-
-                <uc.TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    ios:marginleftlength="15">
-
-                    <TextView
-                        style="@style/H2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="@string/user_phone" />
-
-                    <TextView
-                        android:id="@+id/mp_userphone"
-                        style="@style/L3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="30dp"
-                        android:gravity="end" />
-                </uc.TableRow>
-
-                <uc.TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="44dp">
-
-                    <TextView
-                        style="@style/H2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="@string/user_email" />
-
-                    <TextView
-                        android:id="@+id/mp_useremail"
-                        style="@style/L3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="30dp"
-                        android:gravity="end" />
-                </uc.TableRow>
-            </TableLayout>
-
-            <uc.TableHeader
-                android:layout_width="match_parent"
-                android:layout_height="19dp" />
-
-            <TableLayout
-                android:id="@+id/TableLayout1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/W"
-                android:stretchColumns="1">
-
-
-                <uc.TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    ios:marginleftlength="15">
-
-                    <TextView
-                        style="@style/H2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="@string/user_type" />
-
-                    <TextView
-                        android:id="@+id/mp_usertype"
-                        style="@style/L3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="30dp"
-                        android:gravity="end" />
-                </uc.TableRow>
-
-
-                <uc.TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    ios:marginleftlength="15">
-
-                    <TextView
-                        style="@style/H2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="@string/user_role" />
-
-                    <TextView
-                        android:id="@+id/mp_userrole"
-                        style="@style/L3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:singleLine="false"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="30dp"
-                        android:gravity="end" />
-                </uc.TableRow>
-
-                <uc.TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    ios:marginleftlength="15">
-
-                    <TextView
-                        style="@style/H2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="@string/user_status" />
-
-                    <TextView
-                        android:id="@+id/mp_userstatus"
-                        style="@style/L3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="30dp"
-                        android:gravity="end" />
-                </uc.TableRow>
-
-                <uc.TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="44dp">
-
-                    <TextView
-                        style="@style/H2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="@string/user_remark" />
-
-                    <TextView
-                        android:id="@+id/mp_userremark"
-                        style="@style/L3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="30dp"
-                        android:gravity="end" />
-                </uc.TableRow>
-
-            </TableLayout>
-
-            <uc.TableHeader
-                android:layout_width="match_parent"
-                android:layout_height="19dp" />
-
-            <uc.TableRow
-                android:id="@+id/mp_password"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
+                android:layout_marginTop="29dp"
+                android:gravity="center_vertical"
+                android:onClick="onClick"
+                ios:marginleftlength="15"
                 ios:showarrow="true">
 
                 <TextView
+                    android:id="@+id/down1"
                     style="@style/H2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:text="@string/user_password" />
-            </uc.TableRow>
+                    android:layout_marginTop="5dp"
+                    android:text="我的收藏" />
+
+                <TextView
+                    style="@style/L4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@id/down1"
+                    android:layout_marginBottom="5dp"
+                    android:text="我的收藏列表" />
+
+            </uc.ListRow>
+
+            <uc.ListRow
+                android:id="@+id/fault"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:onClick="onClick"
+                ios:marginleftlength="15"
+                ios:showarrow="true">
+
+                <TextView
+                    android:id="@+id/fault1"
+                    style="@style/H2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="5dp"
+                    android:text="我的评论" />
+
+                <TextView
+                    style="@style/L4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@id/fault1"
+                    android:layout_marginBottom="5dp"
+                    android:text="我评论过的分享列表" />
+
+            </uc.ListRow>
+
+
+
+            <!--<uc.ListRow-->
+            <!--android:id="@+id/data"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:onClick="onClick"-->
+            <!--ios:showarrow="true">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/data1"-->
+            <!--style="@style/H2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:text="我的分享列表" />-->
+
+            <!--<TextView-->
+            <!--style="@style/L4"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_below="@id/data1"-->
+            <!--android:layout_marginBottom="5dp"-->
+            <!--android:text="@string/job_data_l" />-->
+
+            <!--</uc.ListRow>-->
+
         </LinearLayout>
-    </ScrollView>
+
+        <RelativeLayout
+            android:id="@+id/notLogin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/login"
+                style="@style/login_button_style"
+                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:clickable="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginTop="10dp"
+                android:text="点击登录"
+                android:textColor="#000"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </FrameLayout>
+
+
 </RelativeLayout>
-
-
-
-

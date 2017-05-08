@@ -20,7 +20,7 @@ import java.util.Map;
 @SuppressWarnings("deprecation")
 public class PGAJAX {
     static String getUrl(String method) {
-        return Common.URL_BASE + "/rest/"+"/"+method;
+        return Common.URL_BASE + "/rest/"+method;
     }
 
 //    static String getImgUrl() {
@@ -113,8 +113,9 @@ public class PGAJAX {
                         callback.run(true, json);
                     } else {
                         if (ARRAY.contains(Common.APIS_TOKEN, method)) {
-                            String token = json.optJSONArray("data").optJSONObject(0).optString("token");
+                            String token = json.optJSONObject("data").optString("token");
                             CONFIG.set(Common.CONFIG_TOKEN, token);
+
                         } else {
 
                         }
