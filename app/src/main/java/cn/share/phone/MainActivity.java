@@ -28,11 +28,11 @@ public class MainActivity extends ACTIVITY {
     public static TabHost tabHost;
 
     final String[] tabIDs = new String[]{"0", "1", "2", "3", "4"};
-    final String[] tabTitles = new String[]{"首页", "消息", "", "发现", "我的"};
-    final int[] tabIcons = new int[]{R.mipmap.menu_message_, R.mipmap.menu_offer, R.mipmap.menu_work,
-            R.mipmap.menu_admain, R.mipmap.sub_visit};
+    final String[] tabTitles = new String[]{"首页", "消息", "分享", "发现", "我的"};
+    final int[] tabIcons = new int[]{R.mipmap.home, R.mipmap.message, R.mipmap.add,
+            R.mipmap.location, R.mipmap.my};
     final Class[] tabClasses = new Class[]{HomeListActivity.class, MessageListActivity.class, ShareActivity.class,
-            SearchActivity.class, MyActivity.class};
+            PoiAroundSearchActivity.class, MyActivity.class};
     int tintColor;
 
     TabHost.OnTabChangeListener onTabChangeListener = new TabHost.OnTabChangeListener() {
@@ -70,7 +70,6 @@ public class MainActivity extends ACTIVITY {
                 Intent intent = new Intent(MainActivity.this, GuestLoginActivity.class);
                 intent.putExtra("modal", true);
                 startActivity(intent);
-                finish();
             }
 
         });

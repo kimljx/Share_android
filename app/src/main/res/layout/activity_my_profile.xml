@@ -5,7 +5,7 @@
     android:id="@+id/activity_my"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.share.phone.AdminActivity">
+    tools:context="cn.share.phone.AddCommentActivity">
 
     <ios.ui.UINavigationBar
         android:id="@+id/navigationBar"
@@ -32,7 +32,7 @@
 
 
             <uc.ListRow
-                android:id="@+id/up"
+                android:id="@+id/my"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -54,7 +54,8 @@
                     style="@style/H3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="10dp"
                     android:layout_toEndOf="@id/mp_avatar"
                     android:text="luo" />
 
@@ -62,7 +63,7 @@
             </uc.ListRow>
 
             <uc.ListRow
-                android:id="@+id/down"
+                android:id="@+id/collect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="29dp"
@@ -92,7 +93,7 @@
             </uc.ListRow>
 
             <uc.ListRow
-                android:id="@+id/fault"
+                android:id="@+id/comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -122,33 +123,33 @@
 
 
 
-            <!--<uc.ListRow-->
-            <!--android:id="@+id/data"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:gravity="center_vertical"-->
-            <!--android:onClick="onClick"-->
-            <!--ios:showarrow="true">-->
+            <uc.ListRow
+            android:id="@+id/share"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:onClick="onClick"
+            ios:showarrow="true">
 
-            <!--<TextView-->
-            <!--android:id="@+id/data1"-->
-            <!--style="@style/H2"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentStart="true"-->
-            <!--android:layout_marginTop="5dp"-->
-            <!--android:text="我的分享列表" />-->
+            <TextView
+            android:id="@+id/data1"
+            style="@style/H2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:text="我的动态" />
 
-            <!--<TextView-->
-            <!--style="@style/L4"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentStart="true"-->
-            <!--android:layout_below="@id/data1"-->
-            <!--android:layout_marginBottom="5dp"-->
-            <!--android:text="@string/job_data_l" />-->
+            <TextView
+            style="@style/L4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/data1"
+            android:layout_marginBottom="5dp"
+            android:text="我的分享列表" />
 
-            <!--</uc.ListRow>-->
+            </uc.ListRow>
 
         </LinearLayout>
 

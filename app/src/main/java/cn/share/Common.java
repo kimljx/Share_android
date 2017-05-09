@@ -14,12 +14,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Common {
+    //云端
     public static final String URL_BASE = "http://120.25.202.192:80/share";
-
+    //局域端
+//    public static final String URL_BASE = "http://192.168.1.106:8080";
     //不用读取TOKEN的API
     public static final String[] APIS_GUEST =
             new String[]{"login","register","user"
-                    ,"commentList","collectList"};
+                    ,"commentList","collectList","message"};
+
 
 
     //要设置（改变）TOKEN的API
@@ -46,9 +49,13 @@ public class Common {
     public static final String MSG_MESSAGEREFESH = "MESSAGEREFESH";
 
     public static String MSG_HOMELIST = "HOMELIST";
+    public static String MSG_COMMENT = "COMMENT";
+    public static String MSG_SHARE = "SHARE";
+    public static String MSG_HASLOGIN = "HASLOGIN";
 
     //全局常量
     public static final int PAGESIZE = 20;
+
 
 
     public static int getVersionCode(Context context)//获取版本号(内部识别号)
@@ -80,31 +87,16 @@ public class Common {
         String type;
         switch (num) {
             case "1":
-                type = "病假";
+                type = "男";
                 break;
             case "2":
-                type = "事假";
+                type = "女";
                 break;
             case "3":
-                type = "婚假";
-                break;
-            case "4":
-                type = "丧假";
-                break;
-            case "5":
-                type = "产假";
-                break;
-            case "6":
-                type = "年假";
-                break;
-            case "7":
-                type = "工伤假";
-                break;
-            case "8":
-                type = "公出假";
+                type = "保密";
                 break;
             default:
-                type = "不详";
+                type = "保密";
                 break;
 
         }

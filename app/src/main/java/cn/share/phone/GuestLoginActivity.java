@@ -17,6 +17,7 @@ import cn.share.phone.uc.PGACTIVITY;
 import cn.vipapps.CALLBACK;
 import cn.vipapps.CONFIG;
 import cn.vipapps.DIALOG;
+import cn.vipapps.MESSAGE;
 
 import org.json.JSONObject;
 
@@ -67,8 +68,7 @@ public class GuestLoginActivity extends PGACTIVITY {
                         CONFIG.set("USERNAME",name);
                         CONFIG.set("PASSWORD",password);
                         Log.e("run: ", CONFIG.getString(Common.CONFIG_TOKEN));
-//                        Intent intent = new Intent(GuestLoginActivity.this, MainActivity.class);
-//                        startActivity(intent);
+                        MESSAGE.send(Common.MSG_HASLOGIN,null);
                         finish();
                     }
                 });
@@ -81,6 +81,7 @@ public class GuestLoginActivity extends PGACTIVITY {
     @Override
     protected void onStart() {
         super.onStart();
+        this.navigationBar().title("登录");
         button.setEnabled(true);
     }
 

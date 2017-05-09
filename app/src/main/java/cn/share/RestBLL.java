@@ -18,9 +18,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -29,6 +32,7 @@ import java.util.Map;
 import cn.jpush.android.api.JPushInterface;
 
 import static cn.share.Common.PAGESIZE;
+import static cn.share.Common.isGuest;
 
 /**
  * Created by luo on 2017/2/20.
@@ -120,7 +124,7 @@ public class RestBLL {
         }
         Map<String, Object> param = new HashMap<>();
         param.put("userId",userId);
-        PGAJAX.getJSON("my", param, false, AJAX.Mode.POST, new CALLBACK<JSONObject>() {
+        PGAJAX.getJSON("user", param, false, AJAX.Mode.POST, new CALLBACK<JSONObject>() {
             @Override
             public void run(boolean isError, JSONObject result) {
                 if (isError) {
@@ -211,25 +215,26 @@ public class RestBLL {
     public static void uploadAvatar(Bitmap avatar, final CALLBACK<JSONObject> callback) {
 
         Map<String, Object> param = new HashMap<>();
-        File path = ACTIVITY.context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-
-        File file=new File("avatar.png");//将要保存图片的路径
-        try {
-            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
-            avatar.compress(Bitmap.CompressFormat.PNG, 100, bos);
-            bos.flush();
-            bos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        Map<String, InputStream> files;
+        if (avatar != null) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            avatar.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            final InputStream isBm = new ByteArrayInputStream(baos.toByteArray());
+            files = new HashMap<String, InputStream>() {
+                {
+                    put("file", isBm);
+                }
+            };
+        } else {
+            files = null;
         }
-        param.put("file",file);
-        PGAJAX.getJSON("uploadAvatar", param, false, AJAX.Mode.POST, new CALLBACK<JSONObject>() {
+        PGAJAX.upload("uploadAvatar", param, files,false, AJAX.Mode.POST, new CALLBACK<JSONObject>() {
             @Override
             public void run(boolean isError, JSONObject result) {
                 if (isError) {
                     return;
                 }
-                callback.run(false, result.optJSONObject("data"));
+                callback.run(false, result);
             }
         });
     }
@@ -310,7 +315,7 @@ public class RestBLL {
 
 
         Map<String, Object> params = new HashMap<>();
-
+        params.put("notificationId",notificationId);
         PGAJAX.getJSON("notification", params, true, AJAX.Mode.POST, new CALLBACK<JSONObject>() {
             @Override
             public void run(boolean isError, JSONObject result) {
@@ -346,19 +351,23 @@ public class RestBLL {
             DIALOG.alert("请输入分享内容！");
             return;
         }
-        File file=new File("avatar.png");//文件名字
-        try {
-            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
-            img.compress(Bitmap.CompressFormat.PNG, 100, bos);
-            bos.flush();
-            bos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         Map<String, Object> param = new HashMap<>();
         param.put("messageInfo", messageInfo);
-        param.put("file", file);
-        PGAJAX.getJSON("addMessage", param, false, AJAX.Mode.POST, new CALLBACK<JSONObject>() {
+        Map<String, InputStream> files;
+        if (img != null) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            img.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            final InputStream isBm = new ByteArrayInputStream(baos.toByteArray());
+            files = new HashMap<String, InputStream>() {
+                {
+                    put("file", isBm);
+                }
+            };
+        } else {
+            files = null;
+        }
+        PGAJAX.upload("addMessage", param,files, false, AJAX.Mode.POST, new CALLBACK<JSONObject>() {
             @Override
             public void run(boolean isError, JSONObject result) {
                 if (isError) {
@@ -425,7 +434,10 @@ public class RestBLL {
      messageId	string	是	分享的消息id
      */
     public static void commentList(String messageId,final CALLBACK<JSONArray> callback) {
-
+        if (STRING.empty(messageId)) {
+            DIALOG.alert("消息Id为空！");
+            return;
+        }
         Map<String, Object> params = new HashMap<>();
         params.put("messageId",messageId);
         PGAJAX.getJSON("commentList", params, true, AJAX.Mode.POST, new CALLBACK<JSONObject>() {
@@ -453,11 +465,14 @@ public class RestBLL {
 
      */
 
-    public static void addComment(String messageId,String messageInfo,final CALLBACK<JSONObject> callback) {
-
+    public static void addComment(String messageId,String commentInfo,final CALLBACK<JSONObject> callback) {
+        if (STRING.empty(messageId)) {
+            DIALOG.alert("消息Id为空！");
+            return;
+        }
         Map<String, Object> params = new HashMap<>();
         params.put("messageId",messageId);
-        params.put("messageInfo",messageInfo);
+        params.put("commentInfo",commentInfo);
 
         PGAJAX.getJSON("addComment", params, true, AJAX.Mode.POST, new CALLBACK<JSONObject>() {
             @Override
@@ -483,7 +498,10 @@ public class RestBLL {
      */
 
     public static void collect(String messageId,final CALLBACK<JSONObject> callback) {
-
+        if (STRING.empty(messageId)) {
+            DIALOG.alert("消息Id为空！");
+            return;
+        }
         Map<String, Object> params = new HashMap<>();
         params.put("messageId",messageId);
 
@@ -541,6 +559,86 @@ public class RestBLL {
 
         Map<String, Object> params = new HashMap<>();
         PGAJAX.getJSON("myCollectList", params, true, AJAX.Mode.POST, new CALLBACK<JSONObject>() {
+            @Override
+            public void run(boolean isError, JSONObject result) {
+
+                if (isError) {
+                    return;
+                }
+                callback.run(false, result.optJSONArray("data"));
+            }
+        });
+    }
+
+    /**
+     *20.	单条分享列表接口：
+     功能：用于获取我的收藏列表
+     HTTP请求方式: POST
+     URL：	http://120.25.202.192:80/share/rest/message
+
+     请求参数	类型	是否必须	描述
+     token	string	是	Token值
+
+     */
+    public static void message(String messageId,final CALLBACK<JSONObject> callback) {
+        if (STRING.empty(messageId)) {
+            DIALOG.alert("消息Id为空！");
+            return;
+        }
+        Map<String, Object> params = new HashMap<>();
+        params.put("messageId",messageId);
+        PGAJAX.getJSON("message", params, true, AJAX.Mode.POST, new CALLBACK<JSONObject>() {
+            @Override
+            public void run(boolean isError, JSONObject result) {
+
+                if (isError) {
+                    return;
+                }
+                callback.run(false, result.optJSONObject("data"));
+            }
+        });
+    }
+
+    /**
+     *21.	我的分享列表接口：
+     功能：用于获取我的收藏列表
+     HTTP请求方式: POST
+     URL：	http://120.25.202.192:80/share/rest/myCollectList
+
+     请求参数	类型	是否必须	描述
+     token	string	是	Token值
+
+     */
+    public static void myMessageList(final CALLBACK<JSONArray> callback) {
+
+        Map<String, Object> params = new HashMap<>();
+        PGAJAX.getJSON("myMessageList", params, true, AJAX.Mode.POST, new CALLBACK<JSONObject>() {
+            @Override
+            public void run(boolean isError, JSONObject result) {
+
+                if (isError) {
+                    return;
+                }
+                callback.run(false, result.optJSONArray("data"));
+            }
+        });
+    }
+
+    /**
+     *22.	用户分享列表接口：
+     功能：用于获取我的收藏列表
+     HTTP请求方式: POST
+     URL：	http://120.25.202.192:80/share/rest/myCollectList
+
+     请求参数	类型	是否必须	描述
+     token	string	是	Token值
+
+     */
+    public static void userMessageList(String userId,final CALLBACK<JSONArray> callback) {
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("userId",userId);
+        PGAJAX.getJSON("userMessageList", params, true, AJAX.Mode.POST, new CALLBACK<JSONObject>() {
             @Override
             public void run(boolean isError, JSONObject result) {
 

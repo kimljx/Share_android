@@ -104,7 +104,7 @@ public class PGAJAX {
                             DIALOG.alert(message, new CALLBACK<Object>() {
                                 @Override
                                 public void run(boolean isError, Object result) {
-//                                    MESSAGE.send(Common.MSG_LOGIN, null);
+                                    MESSAGE.send(Common.MSG_LOGIN, null);
                                 }
                             });
                         }else {
@@ -133,12 +133,10 @@ public class PGAJAX {
     public static void upload(final String method, Map<String, Object> params_, Map<String, InputStream> files,
                               final boolean isSilence, AJAX.Mode mode, final CALLBACK<JSONObject> callback) {
         String url = getUrl(method);
-        Map<String, Object> headers = new HashMap<String, Object>();
+//        Map<String, Object> headers = new HashMap<String, Object>();
         if (!ARRAY.contains(Common.APIS_GUEST, method)) {
-            headers.put("COOKIE", CONFIG.get(Common.CONFIG_TOKEN));
+            params_.put("token", CONFIG.get(Common.CONFIG_TOKEN));
         }
-        headers.put("content-type", "application/json");
-        AJAX.setHeaders(headers);
         if (!isSilence) {
             DIALOG.loading();
         }
@@ -163,7 +161,33 @@ public class PGAJAX {
 
                 }
                 if (callback != null) {
-                    callback.run(false, json);
+                    int code = json.optInt("code");
+
+                    if (code != 0) {
+                        String message = json.optString("msg");
+                        Log.e("json: ", json+"");
+                        if (code == 10000) {
+                            DIALOG.alert(message, new CALLBACK<Object>() {
+                                @Override
+                                public void run(boolean isError, Object result) {
+                                    MESSAGE.send(Common.MSG_LOGIN, null);
+                                }
+                            });
+                        }else {
+                            DIALOG.alert(message);
+                        }
+                        callback.run(true, json);
+                    } else {
+                        if (ARRAY.contains(Common.APIS_TOKEN, method)) {
+                            String token = json.optJSONObject("data").optString("token");
+                            CONFIG.set(Common.CONFIG_TOKEN, token);
+
+                        } else {
+
+                        }
+                        callback.run(false, json);
+                    }
+
                 }
 
             }

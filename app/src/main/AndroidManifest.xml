@@ -107,19 +107,18 @@
         </activity>
         <activity
             android:name=".phone.GuestLoginActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+             />
         <activity android:name=".phone.MainActivity" />
         <activity android:name=".phone.MessageListActivity" />
-        <activity android:name=".phone.AdminActivity" />
+        <activity android:name=".phone.AddCommentActivity" />
         <activity android:name=".phone.HomeDetailActivity" />
         <activity
             android:name=".phone.ShareActivity"
             android:theme="@android:style/Theme.Black" />
         <activity android:name=".phone.MyActivity" />
-        <activity android:name=".phone.StaffListActivity" />
         <activity android:name=".phone.LeaveListActivity" />
         <activity android:name=".phone.MyPasswordActivity" />
-        <activity android:name=".phone.SearchActivity" />
+        <activity android:name=".phone.LocationActivity" />
         <activity android:name=".phone.RegisterActivity" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
@@ -128,7 +127,7 @@
         <activity android:name=".phone.SignInActivity" />
         <activity android:name=".phone.HomeListActivity" />
         <activity android:name=".phone.CommentActivity" />
-        <activity android:name=".phone.RepairListActivity" />
+        <activity android:name=".phone.MyListActivity" />
         <activity android:name=".phone.RepairFormActivity" />
         <activity
             android:name=".phone.RepairSpareActivity"
@@ -149,7 +148,8 @@
         <activity android:name=".phone.StaffLeavesActivity" />
         <activity android:name=".phone.AddShareActivity" />
         <activity android:name=".phone.LeaveAddActivity" />
-        <activity android:name=".phone.MyLeavesActivity" />
+        <activity android:name=".phone.UserProfileActivity" />
+        <activity android:name=".phone.PoiAroundSearchActivity"></activity>
         <activity android:name=".phone.MyProfileActivity"></activity>
         <activity android:name=".phone.GuestRegisterActivity"></activity>
     </application>

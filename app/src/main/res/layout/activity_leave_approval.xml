@@ -5,7 +5,7 @@
     android:id="@+id/activity_staff_trace"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.share.phone.SearchActivity">
+    tools:context="cn.share.phone.LocationActivity">
 
     <ios.ui.UINavigationBar
         android:id="@+id/navigationBar"

@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:sp="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ios="http://schemas.android.com/tools"
     android:id="@+id/activity_fault_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,19 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="44dp" />
 
-    <!--<ScrollView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_below="@id/navigationBar">-->
-
-
     <RelativeLayout
         android:id="@+id/message"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_below="@id/navigationBar"
         android:background="@color/BG"
-        android:padding="10dp">
+        android:paddingBottom="5dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp">
 
         <uc.CircleImageView
             android:id="@+id/head_img"
@@ -52,6 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@id/head_img"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:maxLines="3"
@@ -59,8 +58,8 @@
 
         <ImageView
             android:id="@+id/bigimg_img"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
             android:layout_below="@id/concent_tv"
             android:layout_centerInParent="true"
             android:scaleType="centerCrop"
@@ -72,11 +71,12 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/bigimg_img"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -91,14 +91,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:gravity="center" />
+                    android:layout_marginStart="10dp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -114,19 +113,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="center" />
+                    android:layout_marginEnd="10dp" />
             </LinearLayout>
 
         </LinearLayout>
     </RelativeLayout>
 
-    <View
+    <uc.TableHeader
         android:id="@+id/v"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/message"
-        android:layout_height="10dp"
-        android:background="@color/L" />
+        ios:title="所有评论"/>
 
     <uc.XListView
         android:id="@+id/xlistview"

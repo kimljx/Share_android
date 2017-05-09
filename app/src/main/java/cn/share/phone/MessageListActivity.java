@@ -63,10 +63,12 @@ public class MessageListActivity extends PGACTIVITY {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.e("onItemClick: ", i + "  "+(i - listView.getHeaderViewsCount()));
                 int j = i - listView.getHeaderViewsCount();
-                String messageId = ((JSONObject) adapter.getItem(j)).optString("id");
+                String notificationId = ((JSONObject) adapter.getItem(j)).optString("notificationId");
+                String messageId = ((JSONObject) adapter.getItem(j)).optString("messageId");
+
                 Intent intent = new Intent(MessageListActivity.this, MessageDetailActivity.class);
+                intent.putExtra("notificationId", notificationId);
                 intent.putExtra("messageId", messageId);
-                Log.e("messageId: ", "  "+messageId);
                 startActivity(intent);
             }
         });

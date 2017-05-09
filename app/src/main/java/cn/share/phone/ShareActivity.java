@@ -42,16 +42,16 @@ public class ShareActivity extends PGACTIVITY {
 
                             @Override
                             public void run(boolean isError, Integer result) {
-                                if (isError) {
-                                    return;
-                                }
+//                                if (isError) {
+//                                    return;
+//                                }
                                 CALLBACK<Bitmap> callback = new CALLBACK<Bitmap>() {
 
                                     @Override
                                     public void run(boolean isError, Bitmap result) {
-                                        if (isError) {
-                                            return;
-                                        }
+//                                        if (isError) {
+//                                            return;
+//                                        }
                                         img = result;
                                         updateAvatar(result);
                                     }
@@ -78,7 +78,6 @@ public class ShareActivity extends PGACTIVITY {
     }
     void updateAvatar(Bitmap avatar) {
 
-//        Bitmap _avatar = IMAGE.zoom(avatar, 200, 200);
         imageView.setImageBitmap(avatar);
     }
     @Override
@@ -93,7 +92,7 @@ public class ShareActivity extends PGACTIVITY {
                     @Override
                     public void run(boolean isError, JSONObject result) {
                         if (isError){
-
+                            return;
                         }
                         DIALOG.alert("分享成功！");
                     }

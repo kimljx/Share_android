@@ -65,11 +65,10 @@ public class HomeListActivity extends PGACTIVITY {
                 Log.e("onItemClick: ", i + "");
                 i = i - listView.getHeaderViewsCount();
                 JSONObject object = (JSONObject) adapter.getItem(i);
-                String share = JSON.stringify(object);
+                String messageId = object.optJSONObject("message").optString("messageId");
                 Intent intent = new Intent(HomeListActivity.this, HomeDetailActivity.class);
-                intent.putExtra("share", share);
+                intent.putExtra("messageId", messageId);
                 startActivity(intent);
-
 
             }
         });
@@ -109,7 +108,7 @@ public class HomeListActivity extends PGACTIVITY {
                 } else {
                     msgPH = (FaultPH) view.getTag();
                 }
-                JSONObject share = getItem(i);
+                final JSONObject share = getItem(i);
                 JSONObject message = share.optJSONObject("message");
                 msgPH.name.setText(share.optString("userName"));
                 msgPH.conten.setText(message.optString("messageInfo"));
@@ -145,7 +144,21 @@ public class HomeListActivity extends PGACTIVITY {
 
                     }
                 });
+                //跳转用户详细页
+                avatar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (avatar.getTag() == avatarurl) {
+                            String userId = share.optString("userId");
+                            Intent intent = new Intent(HomeListActivity.this, UserProfileActivity.class);
+                            intent.putExtra("userId", userId);
+                            startActivity(intent);
+                        } else {
 
+                        }
+
+                    }
+                });
                 //分享的图片
                 final String imgurl = message.optString("pictureUrl");
                 final ImageView img = msgPH.imgdig;
@@ -156,9 +169,11 @@ public class HomeListActivity extends PGACTIVITY {
                     public void run(boolean isError, Bitmap result) {
                         if (img.getTag() == imgurl) {
                             if (result == null) {
+                                img.setVisibility(View.GONE);
 //                                avatar.setImageDrawable(getResources().getDrawable(R.mipmap.avatar));
                                 return;
                             }
+                            img.setVisibility(View.VISIBLE);
                             img.setImageBitmap(result);
                         } else {
 
@@ -177,6 +192,7 @@ public class HomeListActivity extends PGACTIVITY {
     protected void onStart() {
         super.onStart();
         this.navigationBar().title("首页");
+        this.navigationBar().hideBack(true);
     }
 
 
@@ -188,13 +204,14 @@ public class HomeListActivity extends PGACTIVITY {
         RestBLL.messageList(new CALLBACK<JSONArray>() {
             @Override
             public void run(boolean isError, JSONArray result) {
+                listView.stopRefresh();
                 if (isError) {
                     return;
                 }
                 //更新数据
                 allFault = result;
                 adapter.notifyDataSetChanged();
-                listView.stopRefresh();
+
             }
         });
 

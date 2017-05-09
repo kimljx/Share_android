@@ -62,5 +62,6 @@ public class GuestRegisterActivity extends PGACTIVITY {
     protected void onStart() {
         super.onStart();
         button.setEnabled(true);
+        this.navigationBar().title("注册");
     }
 }

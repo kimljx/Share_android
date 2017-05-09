@@ -12,10 +12,43 @@
         android:layout_width="match_parent"
         android:layout_height="44dp"
         />
+    <RelativeLayout
+        android:id="@+id/re"
+        android:layout_width="match_parent"
+        android:layout_height="213dp"
+        android:layout_below="@id/navigationBar"
+        android:background="@mipmap/my_bg">
 
+        <uc.CircleImageView
+            android:id="@+id/mp_avatar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/menu_work" />
+
+        <TextView
+            android:id="@+id/mp_name"
+            style="@style/W1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mp_avatar"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical" />
+        <TextView
+            android:id="@+id/mp_username"
+            style="@style/W2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mp_name"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical" />
+
+    </RelativeLayout>
     <uc.SwipeListView
         android:id="@+id/msl_listview"
-        android:layout_below="@id/navigationBar"
+        android:layout_below="@id/re"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="1dp"
