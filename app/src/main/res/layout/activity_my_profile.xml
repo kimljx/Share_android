@@ -57,7 +57,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@id/mp_avatar"
-                    android:text="luo" />
+                    android:text="" />
 
 
             </uc.ListRow>

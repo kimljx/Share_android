@@ -23,15 +23,11 @@ import uc.TableRow;
 public class MyActivity extends PGACTIVITY implements View.OnClickListener {
 
     CircleImageView mp_avatar;
-    TextView mp_name, mp_username, mp_usertype, mp_userphone,
-            mp_useremail, mp_userremark, mp_userrole, mp_userstatus;
-    TableRow mp_password;
+    TextView mp_name;
 
     void init() {
         mp_avatar = (CircleImageView) this.findViewById(R.id.mp_avatar);
-        mp_name = (TextView) this.findViewById(R.id.mp_name);
-        mp_username = (TextView) this.findViewById(R.id.mp_username);
-        mp_password = (TableRow) this.findViewById(R.id.mp_password);
+        mp_name = (TextView) this.findViewById(R.id.up_down1);
         mp_avatar.setImageDrawable(null);
     }
 
@@ -63,6 +59,7 @@ public class MyActivity extends PGACTIVITY implements View.OnClickListener {
             @Override
             public void run(boolean isError, Bundle result) {
                 isLogin();
+                reloadeData();
             }
         });
     }
@@ -83,15 +80,14 @@ public class MyActivity extends PGACTIVITY implements View.OnClickListener {
                 mp_avatar.setImageDrawable(getResources().getDrawable(R.mipmap.avatar));
 
             }
-            if (userName != null){
-                mp_name.setText(userName);
-            }
+            mp_name.setText(userName);
 
         }
     };
     String userName;
     Bitmap bitmap;
     void reloadeData() {
+
         RestBLL.my(new CALLBACK<JSONObject>() {
             @Override
             public void run(boolean isError, JSONObject result) {

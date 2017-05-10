@@ -3,8 +3,10 @@ package cn.share.phone;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -55,7 +57,19 @@ public class MyListActivity extends PGACTIVITY {
 
             }
         });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.e("onItemClick: ", i + "");
+                i = i - listView.getHeaderViewsCount();
+                JSONObject object = (JSONObject) adapter.getItem(i);
+                String messageId = object.optJSONObject("message").optString("messageId");
+                Intent intent = new Intent(MyListActivity.this, HomeDetailActivity.class);
+                intent.putExtra("messageId", messageId);
+                startActivity(intent);
 
+            }
+        });
         reloadData();
         //绑定数据源
         adapter = new BaseAdapter() {
@@ -175,13 +189,6 @@ public class MyListActivity extends PGACTIVITY {
     protected void onStart() {
         super.onStart();
         this.navigationBar().title(type);
-        this.navigationBar().rightNavButton(R.mipmap.icon_add, new CALLBACK() {
-            @Override
-            public void run(boolean isError, Object result) {
-                Intent intent = new Intent(MyListActivity.this,RepairFormActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
 

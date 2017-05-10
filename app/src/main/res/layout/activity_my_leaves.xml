@@ -46,7 +46,7 @@
             android:gravity="center_vertical" />
 
     </RelativeLayout>
-    <uc.SwipeListView
+    <uc.XListView
         android:id="@+id/msl_listview"
         android:layout_below="@id/re"
         android:layout_width="match_parent"
@@ -58,6 +58,6 @@
         sp:right_width="60dp"
         android:background="@color/BG">
 
-    </uc.SwipeListView>
+    </uc.XListView>
 
 </RelativeLayout>

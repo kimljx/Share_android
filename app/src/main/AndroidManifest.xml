@@ -56,7 +56,7 @@
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="22f5d18f7385f1b627fd2342ff989620" />
+            android:value="a997c8b0cc040398e554fcf0a306a5d0" />
 
         <receiver
             android:name=".MyReceiver"
