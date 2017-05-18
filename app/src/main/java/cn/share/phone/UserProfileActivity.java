@@ -26,6 +26,7 @@ import cn.vipapps.MESSAGE;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import ios.ui.UINavigationBar;
 import uc.CircleImageView;
 import uc.SwipeListView;
 import uc.TableRow;
@@ -34,7 +35,7 @@ import uc.XListView;
 public class UserProfileActivity extends PGACTIVITY {
     private static int start = 0;
     private static int type = 100;
-    SwipeListView listView;
+    XListView listView;
     BaseAdapter adapter;
 
 
@@ -70,7 +71,7 @@ public class UserProfileActivity extends PGACTIVITY {
                 reloadData();
             }
         });
-        listView = (SwipeListView) findViewById(R.id.msl_listview);
+        listView = (XListView) findViewById(R.id.msl_listview);
         listView.setXListViewListener(new XListView.IXListViewListener() {
             @Override
             public void onRefresh() {
@@ -216,6 +217,7 @@ public class UserProfileActivity extends PGACTIVITY {
     @Override
     protected void onStart() {
         super.onStart();
+        final UINavigationBar navigationBar = this.navigationBar();
         this.navigationBar().title("用户详情");
 
     }
@@ -254,7 +256,7 @@ public class UserProfileActivity extends PGACTIVITY {
 
                 mp_username.setText(result.optString("sex"));
                 mp_name.setText(result.optString("userName"));
-
+                navigationBar().title(result.optString("userName"));
                 //头像
                 final String url = result.optString("pictureUrl");
                 PGAJAX.getImage(url, true, new CALLBACK<Bitmap>() {

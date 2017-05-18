@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import cn.share.Common;
@@ -17,11 +18,18 @@ import cn.share.R;
 import cn.share.RestBLL;
 import cn.share.phone.uc.PGACTIVITY;
 import cn.vipapps.CALLBACK;
+import cn.vipapps.DIALOG;
+import cn.vipapps.JSON;
 import cn.vipapps.MESSAGE;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import cn.vipapps.STRING;
+import ios.ui.UINavigationBar;
 import uc.CircleImageView;
 import uc.XListView;
 
@@ -31,6 +39,8 @@ public class MyListActivity extends PGACTIVITY {
     BaseAdapter adapter;
     XListView listView;
     String type;
+    JSONArray delShare = new JSONArray();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +54,7 @@ public class MyListActivity extends PGACTIVITY {
             }
         });
 
-        listView = (XListView)findViewById(R.id.repair_listview);
+        listView = (XListView) findViewById(R.id.repair_listview);
 
         listView.setXListViewListener(new XListView.IXListViewListener() {
             @Override
@@ -54,19 +64,6 @@ public class MyListActivity extends PGACTIVITY {
 
             @Override
             public void onLoadMore() {
-
-            }
-        });
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.e("onItemClick: ", i + "");
-                i = i - listView.getHeaderViewsCount();
-                JSONObject object = (JSONObject) adapter.getItem(i);
-                String messageId = object.optJSONObject("message").optString("messageId");
-                Intent intent = new Intent(MyListActivity.this, HomeDetailActivity.class);
-                intent.putExtra("messageId", messageId);
-                startActivity(intent);
 
             }
         });
@@ -102,12 +99,14 @@ public class MyListActivity extends PGACTIVITY {
                     msgPH.imgdig = (ImageView) view.findViewById(R.id.bigimg_img);
                     msgPH.imgbntcollect = (ImageView) view.findViewById(R.id.imgbnt_coll);
                     msgPH.imgbntpinglun = (ImageView) view.findViewById(R.id.imgbnt_pinglun);
+                    msgPH.relativeLayout = (RelativeLayout) view.findViewById(R.id.rec);
                     view.setTag(msgPH);
                 } else {
                     msgPH = (FaultPH) view.getTag();
                 }
                 final JSONObject share = getItem(i);
                 JSONObject message = share.optJSONObject("message");
+                msgPH.relativeLayout.setVisibility(JSON.contains(delShare, message) ? View.VISIBLE : View.GONE);
                 msgPH.name.setText(share.optString("userName"));
                 msgPH.conten.setText(message.optString("messageInfo"));
                 int n1 = message.optInt("messageCollectnum");
@@ -188,9 +187,82 @@ public class MyListActivity extends PGACTIVITY {
     @Override
     protected void onStart() {
         super.onStart();
+        final UINavigationBar navigationBar = this.navigationBar();
         this.navigationBar().title(type);
+        if (type.equals("我的分享")) {
+
+            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long id) {
+
+                    i = i - listView.getHeaderViewsCount();
+                    JSONObject message = ((JSONObject) adapter.getItem(i)).optJSONObject("message");
+                    if (JSON.contains(delShare, message)) {
+                        delShare = JSON.remove(delShare, message);
+                    } else {
+                        delShare.put(message);
+                    }
+                    adapter.notifyDataSetChanged();
+
+                    return true;
+                }
+            });
+            navigationBar.rightNavButton("删除", new CALLBACK() {
+                @Override
+                public void run(boolean isError, Object result) {
+                    DIALOG.confirm("确认删除？", new CALLBACK<Object>() {
+                        @Override
+                        public void run(boolean isError, Object result) {
+                            if (delShare.length()<1){
+                                DIALOG.alert("长按选择要删除的分享！");
+                                return;
+                            }
+                            RestBLL.delMessageList(JSON.stringify(delShare), new CALLBACK<JSONObject>() {
+                                @Override
+                                public void run(boolean isError, JSONObject result) {
+                                    if (isError){
+                                        return;
+                                    }
+                                    DIALOG.alert("删除成功！", new CALLBACK<Object>() {
+                                        @Override
+                                        public void run(boolean isError, Object result) {
+                                            delShare = new JSONArray();
+                                            reloadData();
+                                        }
+                                    });
+
+                                }
+                            });
+                        }
+                    }, new CALLBACK<Object>() {
+                        @Override
+                        public void run(boolean isError, Object result) {
+
+                        }
+                    });
+                }
+            });
+
+            listView.setOnItemClickListener(itemClickListener);
+
+        } else {
+            listView.setOnItemClickListener(itemClickListener);
+        }
     }
 
+    AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            Log.e("onItemClick: ", i + "");
+            i = i - listView.getHeaderViewsCount();
+            JSONObject object = (JSONObject) adapter.getItem(i);
+            String messageId = object.optJSONObject("message").optString("messageId");
+            Intent intent = new Intent(MyListActivity.this, HomeDetailActivity.class);
+            intent.putExtra("messageId", messageId);
+            startActivity(intent);
+
+        }
+    };
 
     JSONArray allRepair;
 
@@ -198,7 +270,7 @@ public class MyListActivity extends PGACTIVITY {
         listView.setPullLoadEnable(false);
         start = 0;
         allRepair = new JSONArray();
-        switch (type){
+        switch (type) {
             case "我的收藏":
                 RestBLL.myCollectList(new CALLBACK<JSONArray>() {
                     @Override
@@ -250,6 +322,7 @@ public class MyListActivity extends PGACTIVITY {
         TextView name, conten, collectNum, commentNum;
         CircleImageView circlehead;
         ImageView imgdig, imgbntcollect, imgbntpinglun;
+        RelativeLayout relativeLayout;
     }
 
 }

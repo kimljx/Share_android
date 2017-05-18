@@ -113,8 +113,7 @@
         <activity android:name=".phone.AddCommentActivity" />
         <activity android:name=".phone.HomeDetailActivity" />
         <activity
-            android:name=".phone.ShareActivity"
-            android:theme="@android:style/Theme.Black" />
+            android:name=".phone.ShareActivity" />
         <activity android:name=".phone.MyActivity" />
         <activity android:name=".phone.LeaveListActivity" />
         <activity android:name=".phone.MyPasswordActivity" />
@@ -146,7 +145,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".phone.LeaveDetailActivity" />
         <activity android:name=".phone.StaffLeavesActivity" />
-        <activity android:name=".phone.AddShareActivity" />
         <activity android:name=".phone.LeaveAddActivity" />
         <activity android:name=".phone.UserProfileActivity" />
         <activity android:name=".phone.PoiAroundSearchActivity"></activity>

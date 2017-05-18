@@ -21,6 +21,7 @@ import cn.vipapps.DIALOG;
 
 import org.json.JSONObject;
 
+import cn.vipapps.MESSAGE;
 import uc.CircleImageView;
 import uc.TableRow;
 
@@ -109,6 +110,7 @@ public class MyProfileActivity extends PGACTIVITY {
                                                 if (isError){
                                                     return;
                                                 }
+                                                MESSAGE.send(Common.MSG_HASLOGIN,null);
                                                 runOnUiThread(runnable);
                                             }
                                         });
@@ -140,6 +142,8 @@ public class MyProfileActivity extends PGACTIVITY {
         @Override
         public void run() {
             mp_avatar.setImageBitmap(bitmap);
+            Drawable drawable =new BitmapDrawable(bitmap);
+            re.setBackground(drawable);
         }
     };
 

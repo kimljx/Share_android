@@ -18,6 +18,5 @@ public class PGACTIVITY extends ACTIVITY {
 	protected void onStart() {
 		super.onStart();
 		this.initNavigationBar(R.id.navigationBar,this.getResources().getColor(R.color.V));
-
 	}
 }

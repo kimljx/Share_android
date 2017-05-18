@@ -27,6 +27,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import cn.jpush.android.api.JPushInterface;
@@ -90,6 +91,7 @@ public class RestBLL {
                 }
                 CONFIG.set(Common.CONFIG_TOKEN, null);
                 CONFIG.setJSON(Common.CONFIG_USER, null);
+                MESSAGE.send(Common.MSG_HASLOGIN,null);
                 MESSAGE.send(Common.MSG_LOGIN, null);
                 callback.run(false, result);
 
@@ -648,6 +650,60 @@ public class RestBLL {
                 callback.run(false, result.optJSONArray("data"));
             }
         });
+    }
+
+
+    /**
+     *22.	删除分享列表接口：
+     功能：用于获取我的收藏列表
+     HTTP请求方式: POST
+     URL：	http://120.25.202.192:80/share/rest/myCollectList
+
+     请求参数	类型	是否必须	描述
+     token	string	是	Token值
+
+     */
+    public static void delMessageList(String messages, final CALLBACK<JSONObject> callback) {
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("messages",messages);
+        Log.e( "delMessageList: ", params+"");
+        PGAJAX.getJSON("delMessageList", params, true, AJAX.Mode.POST, new CALLBACK<JSONObject>() {
+            @Override
+            public void run(boolean isError, JSONObject result) {
+
+                if (isError) {
+                    return;
+                }
+                callback.run(false, result);
+            }
+        });
+    }
+
+    /**
+     * 保存分享的图片
+     * 将Bitmap转换成文件
+     * 保存文件
+     * @param bm
+     * @param fileName
+     * @throws IOException
+     */
+    public static File saveFile(Bitmap bm,String path, String fileName) throws IOException {
+        File dirFile = new File(path);
+        if(!dirFile.exists()){
+            dirFile.mkdir();
+        }
+        File myCaptureFile = new File(path , fileName);
+        if (FSO.exists(path,fileName)){
+
+        }else {
+            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(myCaptureFile));
+            bm.compress(Bitmap.CompressFormat.JPEG, 80, bos);
+            bos.flush();
+            bos.close();
+        }
+
+        return myCaptureFile;
     }
 
 }

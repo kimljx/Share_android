@@ -73,22 +73,22 @@ public class MainActivity extends ACTIVITY {
             }
 
         });
-        //
-        MESSAGE.receive(Common.MSG_CHANGEBAR, new CALLBACK<Bundle>() {
-            @Override
-            public void run(boolean isError, Bundle result) {
-                boolean isChangeColor = result == null;
-                if (!isChangeColor) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        getWindow().setStatusBarColor(Color.BLACK); // 黑色
-                    }
-                } else {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        getWindow().setStatusBarColor(getResources().getColor(R.color.V)); // 黄色
-                    }
-                }
-            }
-        });
+        //修改状态栏颜色
+//        MESSAGE.receive(Common.MSG_CHANGEBAR, new CALLBACK<Bundle>() {
+//            @Override
+//            public void run(boolean isError, Bundle result) {
+//                boolean isChangeColor = result == null;
+//                if (!isChangeColor) {
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                        getWindow().setStatusBarColor(Color.BLACK); // 黑色
+//                    }
+//                } else {
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                        getWindow().setStatusBarColor(getResources().getColor(R.color.V)); // 黄色
+//                    }
+//                }
+//            }
+//        });
 
         //
         LocalActivityManager activityManager = new LocalActivityManager(this, false);
@@ -104,14 +104,14 @@ public class MainActivity extends ACTIVITY {
             tab.tintColor(tintColor);
             tabPage.setIndicator(tab);
             Intent intent = new Intent(this, tabClasses[i]);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intents.add(intent);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            intents.add(intent);
             tabPage.setContent(intent);
             tabHost.addTab(tabPage);
         }
     }
 
-    List<Intent> intents = new ArrayList<Intent>();
+//    List<Intent> intents = new ArrayList<Intent>();
     Integer selectedTab;
     int keyBackClickCount;
 

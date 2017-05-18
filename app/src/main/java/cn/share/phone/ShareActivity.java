@@ -1,5 +1,6 @@
 package cn.share.phone;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,8 @@ import cn.vipapps.IMAGE;
 import cn.vipapps.MESSAGE;
 import cn.vipapps.WEB;
 
+import static android.R.attr.bitmap;
+
 public class ShareActivity extends PGACTIVITY {
 
     Bitmap img;
@@ -42,18 +45,23 @@ public class ShareActivity extends PGACTIVITY {
 
                             @Override
                             public void run(boolean isError, Integer result) {
-//                                if (isError) {
-//                                    return;
-//                                }
+                                Log.e("CALLBACK<Integer> ",result+"" );
+                                if (isError) {
+                                    Log.e("CALLBACK<Integer> ","error" );
+                                    return;
+                                }
+
                                 CALLBACK<Bitmap> callback = new CALLBACK<Bitmap>() {
 
                                     @Override
                                     public void run(boolean isError, Bitmap result) {
-//                                        if (isError) {
-//                                            return;
-//                                        }
+                                        if (isError) {
+                                            Log.e("CALLBACK<Bitmap> ","error" );
+                                            return;
+                                        }
+                                        Log.e("CALLBACK<Bitmap> ",result.toString()+""  );
                                         img = result;
-                                        updateAvatar(result);
+                                        runOnUiThread(runnable);
                                     }
 
                                 };
@@ -76,14 +84,17 @@ public class ShareActivity extends PGACTIVITY {
 
         });
     }
-    void updateAvatar(Bitmap avatar) {
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            imageView.setImageBitmap(img);
+        }
+    };
 
-        imageView.setImageBitmap(avatar);
-    }
+
     @Override
     protected void onStart() {
         super.onStart();
-        MESSAGE.send(Common.MSG_CHANGEBAR,new Bundle());
         this.navigationBar().title("分享");
         this.navigationBar().rightNavButton("发送", new CALLBACK() {
             @Override
@@ -99,12 +110,6 @@ public class ShareActivity extends PGACTIVITY {
                 });
             }
         });
-//        this.navigationBar().leftNavButton("取消", new CALLBACK() {
-//            @Override
-//            public void run(boolean isError, Object result) {
-//
-//            }
-//        });
 
     }
 

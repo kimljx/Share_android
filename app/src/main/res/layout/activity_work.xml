@@ -16,7 +16,7 @@
         android:layout_height="200dp">
         <EditText
             android:id="@+id/info"
-            android:background="@null"
+            android:background="@drawable/boder_edittext"
             android:hint="欢迎分享......"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"

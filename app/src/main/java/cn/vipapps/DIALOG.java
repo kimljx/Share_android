@@ -263,7 +263,8 @@ public class DIALOG {
 
 					@Override
 					public void onDismiss(ActionSheet actionSheet, boolean isCancel) {
-						callback.run(true, -1);
+						//
+						callback.run(isCancel, -1);
 
 					}
 

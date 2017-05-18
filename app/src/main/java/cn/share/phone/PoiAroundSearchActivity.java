@@ -1,9 +1,15 @@
 package cn.share.phone;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amap.api.location.AMapLocation;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.AMap.OnMapClickListener;
 import com.amap.api.maps.AMap.OnMarkerClickListener;
@@ -30,17 +37,24 @@ import com.amap.api.services.core.AMapException;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.core.SuggestionCity;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeQuery;
+import com.amap.api.services.geocoder.RegeocodeResult;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.amap.api.services.poisearch.PoiSearch.OnPoiSearchListener;
 import com.amap.api.services.poisearch.PoiSearch.SearchBound;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.share.Location;
 import cn.share.NativeUtil;
 import cn.share.R;
+import cn.share.RestBLL;
 import cn.vipapps.CALLBACK;
 
 /**
@@ -71,11 +85,13 @@ public class PoiAroundSearchActivity extends Activity implements OnClickListener
     private double lon;
     private LatLng loaction = new LatLng(30.697218, 104.073694);
 
+    private TextView tvLoation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.poiaroundsearch_activity);
+        tvLoation = (TextView)findViewById(R.id.setLocation);
         mapview = (MapView) findViewById(R.id.mapView);
         mapview.onCreate(savedInstanceState);
         Location.getInstance().startPosition(new CALLBACK<LatLng>() {
@@ -112,11 +128,6 @@ public class PoiAroundSearchActivity extends Activity implements OnClickListener
             TextView searchButton = (TextView) findViewById(R.id.btn_search);
             searchButton.setOnClickListener(this);
         }
-//        myLocationStyle.myLocationIcon(BitmapDescriptorFactory.
-//                fromResource(R.drawable.gps_point));
-//        mAMap.setMyLocationStyle(myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_MAP_ROTATE));
-//        mAMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
-//        mAMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
 
         //设置中心点和缩放比例
         mAMap.moveCamera(CameraUpdateFactory.changeLatLng(loaction));
@@ -160,7 +171,88 @@ public class PoiAroundSearchActivity extends Activity implements OnClickListener
                 }
             }
         });
+        /**
+         * 通过经纬度获取地理位置
+         */
+        final String[] shareLocation = {""};
+        GeocodeSearch geocoderSearch = new GeocodeSearch(this);//传入context
+//        LatLonPoint latLonPoint = new LatLonPoint(lp.getLatitude(), lp.getLongitude());
+        // 第一个参数表示一个Latlng，第二参数表示范围多少米，第三个参数表示是火系坐标系还是GPS原生坐标系
+        RegeocodeQuery query = new RegeocodeQuery(lp, 200, GeocodeSearch.AMAP);
+        geocoderSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
+            /**
+             * 逆地理编码回调
+             */
+            @Override
+            public void onRegeocodeSearched(RegeocodeResult result, int rCode) {
+                if (rCode == AMapException.CODE_AMAP_SUCCESS) {
+                    if (result != null && result.getRegeocodeAddress() != null
+                            && result.getRegeocodeAddress().getFormatAddress() != null) {
+                        shareLocation[0] = result.getRegeocodeAddress().getFormatAddress()
+                                + "附近";
+                        Log.e("shareLocation", shareLocation[0]+"");
+                    } else {
+                        shareLocation[0] = "查找失败";
+                    }
+                } else {
+                    shareLocation[0] = "查找失败";
+                }
+
+
+            }
+
+            @Override
+            public void onGeocodeSearched(GeocodeResult arg0, int arg1) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
+        geocoderSearch.getFromLocationAsyn(query);
+        // intent.setType("text/plain"); //纯文本
+            /*
+             * 图片分享 it.setType("image/png"); 　//添加图片
+              * File f = new
+             * File(Environment.getExternalStorageDirectory()+"/name.png");
+             *
+             * Uri uri = Uri.fromFile(f); intent.putExtra(Intent.EXTRA_STREAM,
+             * uri); 　
+             */
+        this.findViewById(R.id.share).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+//                intent.setType("image/*");
+//                Bitmap bmp=BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+//                String name = "share";
+//                String path = Environment.getExternalStorageDirectory().getPath();
+//                File f = null;
+//                try {
+//                    f = RestBLL.saveFile(bmp,path,name);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                Uri uri = Uri.fromFile(f);
+//                if(uri!=null){
+//                    //uri 是图片的地址
+//                    intent.putExtra(Intent.EXTRA_STREAM, uri);
+//                    intent.setType("image/*");
+//                    //当用户选择短信时使用sms_body取得文字
+//                    intent.putExtra("sms_body", shareLocation[0]);
+//                }else{
+//                    intent.setType("text/plain");
+//                }
+//                intent.putExtra(Intent.EXTRA_STREAM, uri1);
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Share");
+                intent.putExtra(Intent.EXTRA_TEXT, shareLocation[0]);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(Intent.createChooser(intent, "分享我的位置"));
+            }
+        });
     }
+
+
 
     /**
      * 开始进行poi搜索
@@ -216,6 +308,7 @@ public class PoiAroundSearchActivity extends Activity implements OnClickListener
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Location.getInstance().stopPosition();
         mapview.onDestroy();
     }
 
@@ -345,6 +438,28 @@ public class PoiAroundSearchActivity extends Activity implements OnClickListener
         switch (v.getId()) {
             case R.id.btn_search:
                 doSearchQuery();
+                break;
+            case R.id.setLocation:
+                String s = tvLoation.getText().toString();
+                if (s.equals("停止定位")){
+                    Location.getInstance().stopPosition();
+                    tvLoation.setText("开始定位");
+                }else {
+                    Location.getInstance().startPosition(new CALLBACK<LatLng>() {
+                        @Override
+                        public void run(boolean isError, LatLng result) {
+                            loaction = result;
+                            Double lat = result.latitude;
+                            Double lng = result.longitude;
+                            lp.setLatitude(lat);
+                            lp.setLongitude(lng);
+                            Log.e("run: ", loaction + "");
+                            runOnUiThread(runnable);
+                        }
+                    });
+                    tvLoation.setText("停止定位");
+                }
+
                 break;
             default:
                 break;
