@@ -124,7 +124,7 @@ public class MessageListActivity extends PGACTIVITY {
         super.onStart();
         MESSAGE.send(Common.MSG_CHANGEBAR,null);
         SegmentView segmentView = new SegmentView(this);
-        String[] title = new String[]{"未读", "全部"};
+        String[] title = new String[]{"未读", "已读"};
         segmentView.setTitles(title);
         segmentView.setSeclect(select);
         segmentView.setOnSegmentViewClickListener(new SegmentView.onSegmentViewClickListener() {

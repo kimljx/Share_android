@@ -115,37 +115,17 @@
         <activity
             android:name=".phone.ShareActivity" />
         <activity android:name=".phone.MyActivity" />
-        <activity android:name=".phone.LeaveListActivity" />
         <activity android:name=".phone.MyPasswordActivity" />
-        <activity android:name=".phone.LocationActivity" />
-        <activity android:name=".phone.RegisterActivity" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
             tools:replace="screenOrientation" />
-        <activity android:name=".phone.SignInActivity" />
         <activity android:name=".phone.HomeListActivity" />
-        <activity android:name=".phone.CommentActivity" />
         <activity android:name=".phone.MyListActivity" />
-        <activity android:name=".phone.RepairFormActivity" />
-        <activity
-            android:name=".phone.RepairSpareActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity android:name=".phone.DataFormActivity" />
-        <activity android:name=".phone.DataTimeListActivity" />
-        <activity android:name=".phone.DataPeopleListActivity" />
         <activity
             android:name=".phone.MessageDetailActivity"
             android:label="@string/title_activity_message_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".phone.StaffLeaveActivity"
-            android:label="@string/title_activity_leave_detail"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".phone.LeaveDetailActivity" />
-        <activity android:name=".phone.StaffLeavesActivity" />
-        <activity android:name=".phone.LeaveAddActivity" />
         <activity android:name=".phone.UserProfileActivity" />
         <activity android:name=".phone.PoiAroundSearchActivity"></activity>
         <activity android:name=".phone.MyProfileActivity"></activity>

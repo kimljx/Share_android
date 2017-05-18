@@ -58,7 +58,7 @@ public class HomeDetailActivity extends PGACTIVITY {
                 int n1 = message.optInt("messageCollectnum");
                 int n2 = message.optInt("messageCommentnum");
                 collectNum.setText(n1 == 0 ? "" : n1 + "");
-                commentNum.setText(n2 == 0 ? "" : n1 + "");
+                commentNum.setText(n2 == 0 ? "" : n2 + "");
                 imgbntcollect.setImageDrawable(
                         share.optBoolean("isCollect")
                                 ? getResources().getDrawable(R.mipmap.collect_t)
@@ -147,7 +147,7 @@ public class HomeDetailActivity extends PGACTIVITY {
             public void run(boolean isError, Bundle result) {
                 loadMessage();
                 reloadData();
-                MESSAGE.send(Common.MSG_CHANGEBAR, null);
+                MESSAGE.send(Common.MSG_HOMELIST, null);
             }
         });
 

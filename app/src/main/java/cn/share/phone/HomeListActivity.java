@@ -115,7 +115,7 @@ public class HomeListActivity extends PGACTIVITY {
                 int n1 = message.optInt("messageCollectnum");
                 int n2 = message.optInt("messageCommentnum");
                 msgPH.collectNum.setText(n1 == 0 ? "" : n1 + "");
-                msgPH.commentNum.setText(n2 == 0 ? "" : n1 + "");
+                msgPH.commentNum.setText(n2 == 0 ? "" : n2 + "");
                 msgPH.imgbntcollect.setImageDrawable(
                         share.optBoolean("isCollect")
                                 ? getResources().getDrawable(R.mipmap.collect_t)

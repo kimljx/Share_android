@@ -29,7 +29,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/head_img"
-            android:text="你是谁" />
+            android:text="" />
 
         <TextView
             android:id="@+id/concent_tv"
@@ -41,14 +41,14 @@
             android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:maxLines="3"
-            android:text="风景优美风景优美风景优美风景优美风景优美" />
+            android:text="" />
 
         <ImageView
             android:id="@+id/bigimg_img"
             android:layout_width="300dp"
             android:layout_height="150dp"
             android:layout_below="@id/concent_tv"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:scaleType="centerCrop"
             android:src="@mipmap/common_logo" />
 
@@ -113,8 +113,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
-        android:alpha="0.5"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:alpha="0.5">
 
         <ImageView
             android:id="@+id/choose"

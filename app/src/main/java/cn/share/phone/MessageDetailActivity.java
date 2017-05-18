@@ -156,7 +156,6 @@ public class MessageDetailActivity extends PGACTIVITY {
             public void run(boolean isError, Bundle result) {
                 loadMessage();
                 reloadData();
-                MESSAGE.send(Common.MSG_CHANGEBAR, null);
             }
         });
 
