@@ -13,9 +13,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import cn.vipapps.android.ACTIVITY;
-import cn.vipapps.ui.DatePickerView;
-import cn.vipapps.ui.DateTimePickerView;
-import cn.vipapps.ui.TimePickerView;
 import cn.vipapps.ui.WhellPickerView;
 
 import java.util.HashMap;
@@ -278,44 +275,6 @@ public class DIALOG {
 	}
 
 	/**
-	 * datePickerView 日期选择框
-	 * 
-	 * @param context
-	 * @param callback
-	 *            回调方法
-	 */
-	public static void datePickerView(Context context, int color, CALLBACK<String> callback) {
-		DatePickerView datePicker = new DatePickerView(context, color, callback);
-		datePicker.show();
-		datePicker.anim(datePicker);
-	}
-
-	/**
-	 * dateTimePickerView 日期时间滚筒选择框
-	 * 
-	 * @param context
-	 * @param callback
-	 *            回调方法
-	 */
-	public static void dateTimePickerView(Context context, int color, CALLBACK<String> callback) {
-		DateTimePickerView datePicker = new DateTimePickerView(context, color, callback);
-		datePicker.show();
-		datePicker.anim(datePicker);
-	}
-	/**
-	 * timePickerView 日期滚筒选择框
-	 * 
-	 * @param context
-	 * @param callback
-	 *            回调方法
-	 */
-	public static void timePickerView(Context context, int color, CALLBACK<String> callback) {
-		TimePickerView datePicker = new TimePickerView(context, color, callback);
-		datePicker.show();
-		datePicker.anim(datePicker);
-	}
-
-	/**
 	 * whellPickerView 滚筒选择框
 	 * 
 	 * @param context
@@ -328,26 +287,4 @@ public class DIALOG {
 		datePicker.anim(datePicker);
 	}
 
-//	public static void photo(final CALLBACK<Bitmap> callback) {
-//		final String[] titles = new String[] { "拍照", "相册" };
-//		DIALOG.chooseWithTitles(ACTIVITY.context, new CALLBACK<Integer>() {
-//
-//			@Override
-//			public void run(boolean isError, Integer result) {
-//				if (isError) {
-//					return;
-//				}
-//				switch (result) {
-//				case 0:
-//					CAMERA.openCamera(callback);
-//					break;
-//				case 1:
-//					CAMERA.openGallery(callback);
-//					break;
-//				default:
-//					break;
-//				}
-//			}
-//		}, titles);
-//	}
 }

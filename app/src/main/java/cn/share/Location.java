@@ -16,7 +16,7 @@ import cn.vipapps.android.ACTIVITY;
 /**
  * Created by luo on 2017/3/22.
  */
-
+//定位类
 public class Location {
 
     CALLBACK locationCallback;
@@ -28,6 +28,7 @@ public class Location {
         mlocationClient = new AMapLocationClient(ACTIVITY.context);
     }
 
+    //单列模式
     public static Location getInstance(){
         if (location == null){
             location = new Location();

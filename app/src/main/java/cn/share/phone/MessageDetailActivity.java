@@ -22,7 +22,7 @@ import cn.vipapps.CALLBACK;
 import cn.vipapps.MESSAGE;
 import uc.CircleImageView;
 import uc.XListView;
-
+//通知详细页
 public class MessageDetailActivity extends PGACTIVITY {
 
     TextView name, conten, collectNum, commentNum;

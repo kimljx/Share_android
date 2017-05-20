@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+//封装的网络通信类
 @SuppressWarnings("deprecation")
 public class PGAJAX {
     static String getUrl(String method) {
@@ -186,49 +187,6 @@ public class PGAJAX {
                         callback.run(false, json);
                     }
 
-                }
-
-            }
-
-        });
-    }
-
-    @SuppressWarnings({"rawtypes", "unchecked"})
-    public static void getVoid(final String method, Map<String, Object> params_, final boolean isSilence, AJAX.Mode mode,
-                               final CALLBACK callback) {
-        String url = getUrl(method);
-        Map<String, Object> headers = new HashMap<String, Object>();
-        if (!ARRAY.contains(Common.APIS_GUEST, method)) {
-            headers.put("COOKIE", CONFIG.get(Common.CONFIG_TOKEN));
-        }
-        headers.put("content-type", "application/json");
-        AJAX.setHeaders(headers);
-        if (!isSilence) {
-            DIALOG.loading();
-        }
-        Map<String, Object> params = params_;
-        params.put("method", method);
-        AJAX.getVoid(url, params, mode, new CALLBACK() {
-
-            @Override
-            public void run(boolean isError, Object json) {
-                if (!isSilence) {
-                    DIALOG.done();
-
-                }
-                if (isError) {
-                    callback.run(true, null);
-                    return;
-                }
-                if (ARRAY.contains(Common.APIS_TOKEN, method)) {
-                    Map<String, Object> allHeaderFields = AJAX.getHeaders();
-                    String Set_Cookie = (String) allHeaderFields.get("Set-Cookie");
-                    CONFIG.set(Common.CONFIG_TOKEN, Set_Cookie);
-                } else {
-
-                }
-                if (callback != null) {
-                    callback.run(false, null);
                 }
 
             }

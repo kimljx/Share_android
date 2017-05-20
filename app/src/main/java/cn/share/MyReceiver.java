@@ -19,6 +19,7 @@ import cn.jpush.android.api.JPushInterface;
  * 自定义接收器
  * <p>
  * 如果不定义这个 Receiver，则： 1) 默认用户会打开主界面 2) 接收不到自定义消息
+ * 接收极光推送推送下来的详细内容
  */
 public class MyReceiver extends BroadcastReceiver {
     private static final String TAG = "JPush";
@@ -40,7 +41,7 @@ public class MyReceiver extends BroadcastReceiver {
 
                 } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
                     Log.d(TAG, "[MyReceiver] 接收到推送下来的自定义消息: " + bundle.getString(JPushInterface.EXTRA_MESSAGE));
-                    processCustomMessage(context, bundle);
+
 
                 } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
                     Log.e(TAG, "[MyReceiver] 接收到推送下来的通知");
@@ -53,6 +54,7 @@ public class MyReceiver extends BroadcastReceiver {
 //                    1:程序在前台运行
 //                    2:程序在后台运行
 //                    3:程序未启动
+                    //点击通知后唤醒APP
                     switch (getAppSatus(context, "cn.share")) {
                         case 1:
                             Log.e("onReceiver  1", "the ");
@@ -140,28 +142,6 @@ public class MyReceiver extends BroadcastReceiver {
         return sb.toString();
     }
 
-
-    // send msg to MainActivity
-    private void processCustomMessage(Context context, Bundle bundle) {
-        // if (MainActivity.isForeground) {
-        // String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
-        // String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
-        //
-        // Log.e("12333333", message+"\t"+extras);
-        // if (!STRING.empty(extras)) {
-        // try {
-        // JSONObject extraJson = new JSONObject(extras);
-        // if (null != extraJson && extraJson.length() > 0) {
-        // CONFIG.set(Common.CONFIG_PUSH_MESSAGE, message);
-        // }
-        // } catch (JSONException e) {
-        //
-        // }
-        //
-        // }
-        // context.sendBroadcast(msgIntent);
-        // }
-    }
 
 
     /**

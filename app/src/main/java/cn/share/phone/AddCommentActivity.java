@@ -1,8 +1,6 @@
 package cn.share.phone;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 
 import org.json.JSONObject;
@@ -15,6 +13,7 @@ import cn.vipapps.CALLBACK;
 import cn.vipapps.DIALOG;
 import cn.vipapps.MESSAGE;
 
+//添加评论
 public class AddCommentActivity extends PGACTIVITY {
 
     String messageId;
@@ -23,15 +22,18 @@ public class AddCommentActivity extends PGACTIVITY {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+        //获取上一个页面传递过来的消息ID
         messageId = getIntent().getStringExtra("messageId");
+        //绑定控件
         editText = (EditText)this.findViewById(R.id.info);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
+        //标题
         this.navigationBar().title("评论");
+        //提交按钮，和点击事件
         this.navigationBar().rightNavButton("提交", new CALLBACK() {
             @Override
             public void run(boolean isError, Object result) {

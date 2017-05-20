@@ -7,7 +7,7 @@ import cn.jpush.android.api.JPushInterface;
 /**
  * Created by luo on 2017/3/21.
  */
-
+//初始化极光推送
 public class MyApplication extends Application {
 
     @Override

@@ -2,7 +2,6 @@ package cn.share;
 
 
 import android.graphics.Bitmap;
-import android.os.Environment;
 import android.util.Log;
 
 import cn.vipapps.AJAX;
@@ -24,16 +23,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import cn.jpush.android.api.JPushInterface;
-
-import static cn.share.Common.PAGESIZE;
-import static cn.share.Common.isGuest;
 
 /**
  * Created by luo on 2017/2/20.

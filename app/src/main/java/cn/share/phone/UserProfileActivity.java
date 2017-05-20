@@ -31,9 +31,9 @@ import uc.CircleImageView;
 import uc.TableRow;
 import uc.XListView;
 
+//用户信息界面
 public class UserProfileActivity extends PGACTIVITY {
-    private static int start = 0;
-    private static int type = 100;
+
     XListView listView;
     BaseAdapter adapter;
 
@@ -44,6 +44,7 @@ public class UserProfileActivity extends PGACTIVITY {
     RelativeLayout re;
     private String userId;
 
+    //绑定控件
     void init() {
         mp_avatar = (CircleImageView) this.findViewById(R.id.mp_avatar);
         mp_name = (TextView) this.findViewById(R.id.mp_name);
@@ -120,6 +121,7 @@ public class UserProfileActivity extends PGACTIVITY {
                 FaultPH msgPH;
                 if (view == null) {
                     msgPH = new FaultPH();
+                    //绑定每个item的控件
                     view = View.inflate(getBaseContext(), R.layout.item_listview_home, null);
                     msgPH.circlehead = (CircleImageView) view.findViewById(R.id.head_img);
                     msgPH.name = (TextView) view.findViewById(R.id.name_tv);
@@ -226,7 +228,6 @@ public class UserProfileActivity extends PGACTIVITY {
     JSONArray allLeave;
 
     private void reloadData() {
-        start = 0;
         allLeave = new JSONArray();
         listView.setPullLoadEnable(false);
         RestBLL.userMessageList(userId,new CALLBACK<JSONArray>() {

@@ -8,6 +8,7 @@ import java.io.File;
 
 /**
  * Created by Administrator on 2017/4/25.
+ * 地图工具类
  */
 
 public class NativeUtil {

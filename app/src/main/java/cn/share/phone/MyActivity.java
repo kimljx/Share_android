@@ -20,6 +20,7 @@ import cn.vipapps.MESSAGE;
 import uc.CircleImageView;
 import uc.TableRow;
 
+//我的界面
 public class MyActivity extends PGACTIVITY implements View.OnClickListener {
 
     CircleImageView mp_avatar;
@@ -55,6 +56,7 @@ public class MyActivity extends PGACTIVITY implements View.OnClickListener {
         setContentView(R.layout.activity_my_profile);
         init();
         isLogin();
+        //刷新页面数据
         MESSAGE.receive(Common.MSG_HASLOGIN, new CALLBACK<Bundle>() {
             @Override
             public void run(boolean isError, Bundle result) {
@@ -87,7 +89,7 @@ public class MyActivity extends PGACTIVITY implements View.OnClickListener {
     String userName;
     Bitmap bitmap;
     void reloadeData() {
-
+        //绑定页面数据
         RestBLL.my(new CALLBACK<JSONObject>() {
             @Override
             public void run(boolean isError, JSONObject result) {

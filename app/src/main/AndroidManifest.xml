@@ -105,15 +105,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".phone.GuestLoginActivity"
-             />
+        <activity android:name=".phone.GuestLoginActivity" />
         <activity android:name=".phone.MainActivity" />
         <activity android:name=".phone.MessageListActivity" />
         <activity android:name=".phone.AddCommentActivity" />
         <activity android:name=".phone.HomeDetailActivity" />
-        <activity
-            android:name=".phone.ShareActivity" />
+        <activity android:name=".phone.ShareActivity" />
         <activity android:name=".phone.MyActivity" />
         <activity android:name=".phone.MyPasswordActivity" />
         <activity
@@ -127,9 +124,10 @@
             android:label="@string/title_activity_message_detail"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".phone.UserProfileActivity" />
-        <activity android:name=".phone.PoiAroundSearchActivity"></activity>
-        <activity android:name=".phone.MyProfileActivity"></activity>
-        <activity android:name=".phone.GuestRegisterActivity"></activity>
+        <activity android:name=".phone.PoiAroundSearchActivity" />
+        <activity android:name=".phone.MyProfileActivity" />
+        <activity android:name=".phone.GuestRegisterActivity" />
+        <activity android:name=".phone.AddImageActivity"></activity>
     </application>
 
 </manifest>

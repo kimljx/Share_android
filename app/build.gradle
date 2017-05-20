@@ -39,15 +39,14 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/org.apache.http.legacy.jar')
-    compile files('libs/nineoldanimatin.jar')
     // 此处以JPush 3.0.3 版本为例。
     // 此处以JCore 1.1.1 版本为例。
+    compile files('libs/AMap_Search_V4.0.0_20170111.jar')
+    compile files('libs/AMap_Location_V3.4.0_20170427.jar')
     compile 'com.android.support:appcompat-v7:25.0.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.2.0'
     compile 'cn.jiguang.sdk:jpush:3.0.3'
     compile 'cn.jiguang.sdk:jcore:1.1.1'
     testCompile 'junit:junit:4.12'
-    compile files('libs/AMap_Search_V4.0.0_20170111.jar')
-    compile files('libs/AMap_Location_V3.4.0_20170427.jar')
 }

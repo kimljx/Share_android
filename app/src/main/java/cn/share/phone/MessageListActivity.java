@@ -23,11 +23,9 @@ import org.json.JSONObject;
 import uc.SegmentView;
 import uc.XListView;
 
-import static cn.share.Common.PAGESIZE;
-
+//通知列表页
 public class MessageListActivity extends PGACTIVITY {
 
-    private int start = 0;
     private int type = 0;
     XListView listView;
     BaseAdapter adapter;
@@ -58,6 +56,7 @@ public class MessageListActivity extends PGACTIVITY {
 
             }
         });
+        //每个Item的点击事件，进入详细页
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -65,14 +64,15 @@ public class MessageListActivity extends PGACTIVITY {
                 int j = i - listView.getHeaderViewsCount();
                 String notificationId = ((JSONObject) adapter.getItem(j)).optString("notificationId");
                 String messageId = ((JSONObject) adapter.getItem(j)).optString("messageId");
-
                 Intent intent = new Intent(MessageListActivity.this, MessageDetailActivity.class);
+                //传递消息ID和通知Id给下一个页面
                 intent.putExtra("notificationId", notificationId);
                 intent.putExtra("messageId", messageId);
                 startActivity(intent);
             }
         });
         reloadData();
+        //适配器绑定数据
         adapter = new BaseAdapter() {
             @Override
             public int getCount() {
@@ -103,15 +103,15 @@ public class MessageListActivity extends PGACTIVITY {
                 }
                 JSONObject message = getItem(i);
                 msgPH.message.setText(message.optString("notificationInfo"));
-//                msgPH.time.setText(message.optString("ctime"));
+
                 return view;
             }
         };
         listView.setAdapter(adapter);
+        //接收广播，刷新页面
         MESSAGE.receive(Common.MSG_NOTIFICATION, new CALLBACK<Bundle>() {
             @Override
             public void run(boolean isError, Bundle result) {
-//                DIALOG.toast("333333");
                 onStart();
                 reloadData();
             }
@@ -122,7 +122,7 @@ public class MessageListActivity extends PGACTIVITY {
     @Override
     protected void onStart() {
         super.onStart();
-        MESSAGE.send(Common.MSG_CHANGEBAR,null);
+        //设置切换选项控件
         SegmentView segmentView = new SegmentView(this);
         String[] title = new String[]{"未读", "已读"};
         segmentView.setTitles(title);
@@ -144,8 +144,8 @@ public class MessageListActivity extends PGACTIVITY {
 
     JSONArray allMessage;
 
+    //调用接口获取数据
     private void reloadData() {
-        start = 0;
         allMessage = new JSONArray();
         listView.setPullLoadEnable(false);
         RestBLL.notificationList(String.valueOf(type),new CALLBACK<JSONArray>() {

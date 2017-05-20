@@ -23,11 +23,19 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/addimg"
+        style="@style/V0"
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start|center_vertical"
+        android:text="添加图片"/>
+
     <ImageView
         android:id="@+id/imgbnt_add"
         android:layout_gravity="center_horizontal"
-        android:background="@mipmap/icon_add"
         android:scaleType="centerCrop"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
+        android:layout_width="300dp"
+        android:layout_height="200dp" />
 </LinearLayout>

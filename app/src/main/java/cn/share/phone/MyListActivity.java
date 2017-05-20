@@ -33,6 +33,7 @@ import ios.ui.UINavigationBar;
 import uc.CircleImageView;
 import uc.XListView;
 
+//我的收藏，评论，分享共用的界面
 public class MyListActivity extends PGACTIVITY {
 
     private int start = 0;
@@ -46,7 +47,7 @@ public class MyListActivity extends PGACTIVITY {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repair_list);
         type = getIntent().getStringExtra("type");
-        //
+        //刷新数据
         MESSAGE.receive(Common.MSG_HOMELIST, new CALLBACK<Bundle>() {
             @Override
             public void run(boolean isError, Bundle result) {
@@ -190,7 +191,7 @@ public class MyListActivity extends PGACTIVITY {
         final UINavigationBar navigationBar = this.navigationBar();
         this.navigationBar().title(type);
         if (type.equals("我的分享")) {
-
+            //长按选中事件
             listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long id) {
@@ -250,6 +251,7 @@ public class MyListActivity extends PGACTIVITY {
         }
     }
 
+    //点击事件，转跳详细页
     AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -266,6 +268,7 @@ public class MyListActivity extends PGACTIVITY {
 
     JSONArray allRepair;
 
+    //通过type的值获取不同的接口数据
     private void reloadData() {
         listView.setPullLoadEnable(false);
         start = 0;

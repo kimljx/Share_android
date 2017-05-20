@@ -22,7 +22,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import ios.ui.UITab;
-
+//主页面
 public class MainActivity extends ACTIVITY {
 
     public static TabHost tabHost;
@@ -34,7 +34,7 @@ public class MainActivity extends ACTIVITY {
     final Class[] tabClasses = new Class[]{HomeListActivity.class, MessageListActivity.class, ShareActivity.class,
             PoiAroundSearchActivity.class, MyActivity.class};
     int tintColor;
-
+    //页面切换事件
     TabHost.OnTabChangeListener onTabChangeListener = new TabHost.OnTabChangeListener() {
         @Override
         public void onTabChanged(String tabId) {
@@ -55,13 +55,11 @@ public class MainActivity extends ACTIVITY {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        String token = CONFIG.getString(Common.CONFIG_TOKEN);
-//        Log.e("token: ", token);
         tabHost = (TabHost) this.findViewById(R.id.tabhost);
 
         tintColor = this.getResources().getColor(R.color.V);
 
-        //
+        //收到转跳登录页面的广播指令
         MESSAGE.receive(Common.MSG_LOGIN, new CALLBACK() {
 
             @Override
@@ -73,28 +71,13 @@ public class MainActivity extends ACTIVITY {
             }
 
         });
-        //修改状态栏颜色
-//        MESSAGE.receive(Common.MSG_CHANGEBAR, new CALLBACK<Bundle>() {
-//            @Override
-//            public void run(boolean isError, Bundle result) {
-//                boolean isChangeColor = result == null;
-//                if (!isChangeColor) {
-//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                        getWindow().setStatusBarColor(Color.BLACK); // 黑色
-//                    }
-//                } else {
-//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                        getWindow().setStatusBarColor(getResources().getColor(R.color.V)); // 黄色
-//                    }
-//                }
-//            }
-//        });
 
-        //
+
         LocalActivityManager activityManager = new LocalActivityManager(this, false);
         activityManager.dispatchCreate(savedInstanceState);
         tabHost.setup(activityManager);
         tabHost.setOnTabChangedListener(onTabChangeListener);
+        //填充页面进入每个TAB
         for (int i = 0; i < tabIcons.length; i++) {
             TabHost.TabSpec tabPage = tabHost.newTabSpec(tabIDs[i]);
 
@@ -104,18 +87,15 @@ public class MainActivity extends ACTIVITY {
             tab.tintColor(tintColor);
             tabPage.setIndicator(tab);
             Intent intent = new Intent(this, tabClasses[i]);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            intents.add(intent);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             tabPage.setContent(intent);
             tabHost.addTab(tabPage);
         }
     }
-
-//    List<Intent> intents = new ArrayList<Intent>();
     Integer selectedTab;
     int keyBackClickCount;
 
-    //捕捉键盘
+    //捕捉键盘事件
     public boolean dispatchKeyEvent(KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
             switch (keyBackClickCount++) {

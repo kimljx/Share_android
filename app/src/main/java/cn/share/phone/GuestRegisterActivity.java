@@ -18,13 +18,16 @@ import cn.share.phone.uc.PGACTIVITY;
 import cn.vipapps.CALLBACK;
 import cn.vipapps.CONFIG;
 
+//注册
 public class GuestRegisterActivity extends PGACTIVITY {
     EditText etUserName, etPassword;
     Button button;
+
     public static void startActivity(Context context){
         Intent intent=new Intent(context,GuestRegisterActivity.class);
         context.startActivity(intent);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

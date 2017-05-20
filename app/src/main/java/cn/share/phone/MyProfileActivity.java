@@ -21,10 +21,12 @@ import cn.vipapps.DIALOG;
 
 import org.json.JSONObject;
 
+import cn.vipapps.IMAGE;
 import cn.vipapps.MESSAGE;
 import uc.CircleImageView;
 import uc.TableRow;
 
+//我的详细页
 public class MyProfileActivity extends PGACTIVITY {
 
     CircleImageView mp_avatar;
@@ -104,7 +106,7 @@ public class MyProfileActivity extends PGACTIVITY {
                                             return;
                                         }
                                         bitmap = result;
-                                        RestBLL.uploadAvatar(bitmap, new CALLBACK<JSONObject>() {
+                                        RestBLL.uploadAvatar(IMAGE.zoom(bitmap, 200, 200), new CALLBACK<JSONObject>() {
                                             @Override
                                             public void run(boolean isError, JSONObject result) {
                                                 if (isError){
@@ -138,6 +140,7 @@ public class MyProfileActivity extends PGACTIVITY {
         });
         fillData();
     }
+
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
@@ -147,6 +150,7 @@ public class MyProfileActivity extends PGACTIVITY {
         }
     };
 
+    //调用接口获取用户信息
     void fillData() {
         RestBLL.my(new CALLBACK<JSONObject>() {
             @Override

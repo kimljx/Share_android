@@ -3,9 +3,7 @@ package cn.share.phone;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,15 +14,11 @@ import cn.share.R;
 import cn.share.RestBLL;
 import cn.share.phone.uc.PGACTIVITY;
 import cn.vipapps.CALLBACK;
-import cn.vipapps.CAMERA;
 import cn.vipapps.CONFIG;
-import cn.vipapps.DIALOG;
 import cn.vipapps.IMAGE;
 import cn.vipapps.MESSAGE;
-import cn.vipapps.WEB;
 
-import static android.R.attr.bitmap;
-
+//分享页面
 public class ShareActivity extends PGACTIVITY {
 
     Bitmap img;
@@ -34,64 +28,24 @@ public class ShareActivity extends PGACTIVITY {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work);
-        imageView = (ImageView)findViewById(R.id.imgbnt_add);
-        info = (TextView)findViewById(R.id.info);
-        findViewById(R.id.imgbnt_add).setOnClickListener(new View.OnClickListener() {
-
+        imageView = (ImageView) findViewById(R.id.imgbnt_add);
+        info = (TextView) findViewById(R.id.info);
+        //刷新页面数据
+        MESSAGE.receive(Common.MSG_IMG, new CALLBACK<Bundle>() {
             @Override
-            public void onClick(View arg0) {
-                DIALOG.chooseWithTitles(ShareActivity.this,
-                        new CALLBACK<Integer>() {
-
-                            @Override
-                            public void run(boolean isError, Integer result) {
-                                Log.e("CALLBACK<Integer> ",result+"" );
-                                if (isError) {
-                                    Log.e("CALLBACK<Integer> ","error" );
-                                    return;
-                                }
-
-                                CALLBACK<Bitmap> callback = new CALLBACK<Bitmap>() {
-
-                                    @Override
-                                    public void run(boolean isError, Bitmap result) {
-                                        if (isError) {
-                                            Log.e("CALLBACK<Bitmap> ","error" );
-                                            return;
-                                        }
-                                        Log.e("CALLBACK<Bitmap> ",result.toString()+""  );
-                                        img = result;
-                                        runOnUiThread(runnable);
-                                    }
-
-                                };
-                                switch (result) {
-                                    case 0:
-                                        CAMERA.openGallery(callback);
-                                        break;
-                                    case 1:
-                                        CAMERA.openCamera(callback);
-                                        break;
-                                    default:
-                                        break;
-                                }
-
-                            }
-
-                        }, "打开相册", "现在拍照");
-
+            public void run(boolean isError, Bundle result) {
+                img = CONFIG.getImage(Common.CONFIG_IMG);
+                imageView.setImageBitmap(img);
             }
-
+        });
+        //进入添加图片页面
+        this.findViewById(R.id.addimg).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ShareActivity.this, AddImageActivity.class));
+            }
         });
     }
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            imageView.setImageBitmap(img);
-        }
-    };
-
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -99,13 +53,14 @@ public class ShareActivity extends PGACTIVITY {
         this.navigationBar().rightNavButton("发送", new CALLBACK() {
             @Override
             public void run(boolean isError, Object result) {
+                //压缩图片并上传
+                img =  IMAGE.zoom(img, 200, 200);
                 RestBLL.addMessage(info.getText().toString(), img, new CALLBACK<JSONObject>() {
                     @Override
                     public void run(boolean isError, JSONObject result) {
                         if (isError){
                             return;
                         }
-                        DIALOG.alert("分享成功！");
                     }
                 });
             }

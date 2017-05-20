@@ -20,7 +20,7 @@ import cn.vipapps.DIALOG;
 import cn.vipapps.MESSAGE;
 
 import org.json.JSONObject;
-
+//登录
 public class GuestLoginActivity extends PGACTIVITY {
 
     EditText  etUserName, etPassword;
@@ -29,7 +29,7 @@ public class GuestLoginActivity extends PGACTIVITY {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //
+        //绑定控件
         setContentView(R.layout.activity_guest_login);
         etUserName = (EditText) findViewById(R.id.usernameEditText);
         etPassword = (EditText) findViewById(R.id.passwordEditText);
@@ -37,7 +37,6 @@ public class GuestLoginActivity extends PGACTIVITY {
         tvlizc=(TextView)findViewById(R.id.txt_lijizc) ;
         button.setEnabled(true);
         //
-
         isLogin();
         tvlizc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +45,8 @@ public class GuestLoginActivity extends PGACTIVITY {
                 startActivity(new Intent(GuestLoginActivity.this, GuestRegisterActivity.class));//跳转到注册界面
             }
         });
+
+        //登录
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,11 +85,10 @@ public class GuestLoginActivity extends PGACTIVITY {
         this.navigationBar().title("登录");
         button.setEnabled(true);
     }
-
+    //判断是否登录
     void isLogin(){
         String token = CONFIG.getString(Common.CONFIG_TOKEN);
         if (token != null){
-            String cName = (String) CONFIG.get("COMNAME");
             String uName = (String)CONFIG.get("USERNAME");
             String ePassword = (String)CONFIG.get("PASSWORD");
             etUserName.setText(uName);

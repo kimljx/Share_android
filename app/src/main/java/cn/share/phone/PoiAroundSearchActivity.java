@@ -58,7 +58,7 @@ import cn.share.RestBLL;
 import cn.vipapps.CALLBACK;
 
 /**
- * 介绍poi周边搜索功能
+ * 地图定位页面
  */
 public class PoiAroundSearchActivity extends Activity implements OnClickListener,
         OnMapClickListener, OnMarkerClickListener,
@@ -94,6 +94,7 @@ public class PoiAroundSearchActivity extends Activity implements OnClickListener
         tvLoation = (TextView)findViewById(R.id.setLocation);
         mapview = (MapView) findViewById(R.id.mapView);
         mapview.onCreate(savedInstanceState);
+        //定位
         Location.getInstance().startPosition(new CALLBACK<LatLng>() {
             @Override
             public void run(boolean isError, LatLng result) {
@@ -209,15 +210,7 @@ public class PoiAroundSearchActivity extends Activity implements OnClickListener
 
         });
         geocoderSearch.getFromLocationAsyn(query);
-        // intent.setType("text/plain"); //纯文本
-            /*
-             * 图片分享 it.setType("image/png"); 　//添加图片
-              * File f = new
-             * File(Environment.getExternalStorageDirectory()+"/name.png");
-             *
-             * Uri uri = Uri.fromFile(f); intent.putExtra(Intent.EXTRA_STREAM,
-             * uri); 　
-             */
+        // 分享位置
         this.findViewById(R.id.share).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

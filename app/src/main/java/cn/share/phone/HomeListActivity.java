@@ -27,7 +27,7 @@ import org.json.JSONObject;
 
 import uc.CircleImageView;
 import uc.XListView;
-
+//分享列表页
 public class HomeListActivity extends PGACTIVITY {
     private int start = 0;
     BaseAdapter adapter;

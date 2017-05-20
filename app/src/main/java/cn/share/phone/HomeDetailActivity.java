@@ -24,6 +24,7 @@ import cn.vipapps.MESSAGE;
 import uc.CircleImageView;
 import uc.XListView;
 
+//分享详情页
 public class HomeDetailActivity extends PGACTIVITY {
     TextView name, conten, collectNum, commentNum;
     CircleImageView circlehead;
@@ -31,7 +32,7 @@ public class HomeDetailActivity extends PGACTIVITY {
     XListView listView;
     BaseAdapter adapter;
     String messageId;
-
+    //绑定控件
     void init() {
         circlehead = (CircleImageView) findViewById(R.id.head_img);
         name = (TextView) findViewById(R.id.name_tv);
@@ -45,6 +46,7 @@ public class HomeDetailActivity extends PGACTIVITY {
 
     }
 
+    //获取分享内容
     void loadMessage(){
         RestBLL.message(messageId, new CALLBACK<JSONObject>() {
             @Override
@@ -151,6 +153,7 @@ public class HomeDetailActivity extends PGACTIVITY {
             }
         });
 
+        //评论列表
         listView.setPullLoadEnable(false);
         listView.setXListViewListener(new XListView.IXListViewListener() {
             @Override
@@ -256,6 +259,7 @@ public class HomeDetailActivity extends PGACTIVITY {
 
     JSONArray allFault;
 
+    //调用接口获取数据
     private void reloadData() {
         allFault = new JSONArray();
         listView.setPullLoadEnable(false);

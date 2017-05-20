@@ -9,7 +9,7 @@ import cn.share.phone.uc.PGACTIVITY;
 import cn.vipapps.CALLBACK;
 import cn.vipapps.DIALOG;
 import org.json.JSONObject;
-
+//修改密码界面
 public class MyPasswordActivity extends PGACTIVITY {
 
     EditText mpw_old;

@@ -10,7 +10,7 @@ import android.support.v4.content.ContextCompat;
 
 import cn.share.R;
 import cn.vipapps.android.ACTIVITY;
-
+//启动页面
 public class SplashActivity extends ACTIVITY {
 
     @Override
@@ -18,10 +18,10 @@ public class SplashActivity extends ACTIVITY {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        //延时两秒跳转主页面
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 getJurisdiction();
-                /* Create an Intent that will start the MainActivity. */
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
