@@ -85,6 +85,9 @@ public class CONFIG {
 
 	public static Bitmap getImage(String key){
 		String string = getString( key);
+		if(string == null){
+			return null;
+		}
 		byte[] byteArray= Base64.decode(string, Base64.DEFAULT);
 		ByteArrayInputStream byteArrayInputStream=new ByteArrayInputStream(byteArray);
 		Bitmap bitmap= BitmapFactory.decodeStream(byteArrayInputStream);
