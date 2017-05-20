@@ -15,6 +15,7 @@ import cn.share.RestBLL;
 import cn.share.phone.uc.PGACTIVITY;
 import cn.vipapps.CALLBACK;
 import cn.vipapps.CONFIG;
+import cn.vipapps.DIALOG;
 import cn.vipapps.IMAGE;
 import cn.vipapps.MESSAGE;
 
@@ -61,6 +62,7 @@ public class ShareActivity extends PGACTIVITY {
                         if (isError){
                             return;
                         }
+                        DIALOG.alert("分享成功!");
                     }
                 });
             }

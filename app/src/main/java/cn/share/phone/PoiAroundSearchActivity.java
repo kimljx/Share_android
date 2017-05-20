@@ -338,7 +338,7 @@ public class PoiAroundSearchActivity extends Activity implements OnClickListener
                     }
                 }
             } else {
-                Toast.makeText(PoiAroundSearchActivity.this, "没有结果还回", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PoiAroundSearchActivity.this, "超出搜索范围", Toast.LENGTH_SHORT).show();
             }
         } else {
             Toast.makeText(PoiAroundSearchActivity.this, "错误", Toast.LENGTH_SHORT).show();

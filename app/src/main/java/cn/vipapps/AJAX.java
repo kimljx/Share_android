@@ -775,27 +775,9 @@ public class AJAX {
 	 */
 	public static void getImage(final String url, final CALLBACK<Bitmap> callback) {
 
-//		Drawable cachedImage = (new IMAGELOADER()).loadDrawable(url, new IMAGELOADER.ImageCallback(){
-//			public void imageLoaded(Drawable imageDrawable, String imageUrl) {
-//
-//
-//				BitmapDrawable bmpDraw = (BitmapDrawable)imageDrawable;
-//				if (bmpDraw == null){
-//					callback.run(true, null);
-//					return;
-//				}
-//				Bitmap bmp = bmpDraw.getBitmap();
-//				callback.run(false, bmp);
-//
-//			}});
-//		MESSAGE.receive(Common.MSG_CLEARIMG, new CALLBACK<Bundle>() {
-//			@Override
-//			public void run(boolean isError, Bundle result) {
-//				BUFFER.clear();
-//			}
-//		});
-		if (BUFFER.containsKey(url)) {
-			callback.run(false, BUFFER.get(url));
+
+		if (CONFIG.getImage(url)!=null) {
+			callback.run(false, CONFIG.getImage(url));
 			return;
 		}
 		getBytes(url, null, Mode.GET, new CALLBACK<byte[]>() {
@@ -808,7 +790,7 @@ public class AJAX {
 				}
 				try {
 					Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-					BUFFER.put(url,bitmap);
+					CONFIG.setImage(url,bitmap);
 					callback.run(false, bitmap);
 				} catch (Exception e) {
 					callback.run(true, null);
