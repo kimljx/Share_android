@@ -69,7 +69,7 @@ public class Location {
         //设置精度
         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
         //设置定位间隔,单位毫秒,默认为2000ms，1200000
-        mLocationOption.setInterval(2000);
+        mLocationOption.setInterval(5000);
         //设置定位参数
         mlocationClient.setLocationOption(mLocationOption);
         //设置定位回调监听

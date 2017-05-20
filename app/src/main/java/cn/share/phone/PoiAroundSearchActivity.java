@@ -149,7 +149,7 @@ public class PoiAroundSearchActivity extends Activity implements OnClickListener
         myLocationStyle = new MyLocationStyle();
         myLocationStyle.myLocationIcon(BitmapDescriptorFactory.
                 fromResource(R.drawable.gps_point));
-        mAMap.setMyLocationStyle(myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_MAP_ROTATE));
+        mAMap.setMyLocationStyle(myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE));
         mAMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
         mAMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
 
@@ -179,7 +179,7 @@ public class PoiAroundSearchActivity extends Activity implements OnClickListener
         GeocodeSearch geocoderSearch = new GeocodeSearch(this);//传入context
 //        LatLonPoint latLonPoint = new LatLonPoint(lp.getLatitude(), lp.getLongitude());
         // 第一个参数表示一个Latlng，第二参数表示范围多少米，第三个参数表示是火系坐标系还是GPS原生坐标系
-        RegeocodeQuery query = new RegeocodeQuery(lp, 200, GeocodeSearch.AMAP);
+        RegeocodeQuery query = new RegeocodeQuery(lp, 3000, GeocodeSearch.AMAP);
         geocoderSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
             /**
              * 逆地理编码回调
