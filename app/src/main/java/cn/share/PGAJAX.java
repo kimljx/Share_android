@@ -23,9 +23,7 @@ public class PGAJAX {
         return Common.URL_BASE + "/rest/"+method;
     }
 
-//    static String getImgUrl() {
-//        return Common.URL_BASE + "/userfile/";
-//    }
+
 
     public static void getString(final String method, Map<String, Object> params_, final boolean isSilence, AJAX.Mode mode,
                                  final CALLBACK<String> callback) {

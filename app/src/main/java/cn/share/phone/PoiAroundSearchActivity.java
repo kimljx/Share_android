@@ -223,27 +223,6 @@ public class PoiAroundSearchActivity extends Activity implements OnClickListener
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-//                intent.setType("image/*");
-//                Bitmap bmp=BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-//                String name = "share";
-//                String path = Environment.getExternalStorageDirectory().getPath();
-//                File f = null;
-//                try {
-//                    f = RestBLL.saveFile(bmp,path,name);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                Uri uri = Uri.fromFile(f);
-//                if(uri!=null){
-//                    //uri 是图片的地址
-//                    intent.putExtra(Intent.EXTRA_STREAM, uri);
-//                    intent.setType("image/*");
-//                    //当用户选择短信时使用sms_body取得文字
-//                    intent.putExtra("sms_body", shareLocation[0]);
-//                }else{
-//                    intent.setType("text/plain");
-//                }
-//                intent.putExtra(Intent.EXTRA_STREAM, uri1);
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Share");
                 intent.putExtra(Intent.EXTRA_TEXT, shareLocation[0]);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
