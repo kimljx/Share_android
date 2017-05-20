@@ -28,7 +28,6 @@ import org.json.JSONObject;
 
 import ios.ui.UINavigationBar;
 import uc.CircleImageView;
-import uc.SwipeListView;
 import uc.TableRow;
 import uc.XListView;
 

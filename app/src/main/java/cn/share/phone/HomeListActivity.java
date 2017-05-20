@@ -26,7 +26,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import uc.CircleImageView;
-import uc.SwipeListView;
 import uc.XListView;
 
 public class HomeListActivity extends PGACTIVITY {

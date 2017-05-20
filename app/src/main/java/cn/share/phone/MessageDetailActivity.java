@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,12 +19,7 @@ import cn.share.R;
 import cn.share.RestBLL;
 import cn.share.phone.uc.PGACTIVITY;
 import cn.vipapps.CALLBACK;
-import cn.vipapps.CONFIG;
 import cn.vipapps.MESSAGE;
-import cn.vipapps.WEB;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import uc.CircleImageView;
 import uc.XListView;
 

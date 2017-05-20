@@ -85,7 +85,6 @@ public class ListRow extends RelativeLayout {
 	}
 
 	public void setMarginleft(float marginleft) {
-
 		margleft = marginleft;
 		invalidate();
 

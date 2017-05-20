@@ -1,28 +1,11 @@
 <resources>
     <string name="app_name">Share</string>
     <string name="tv_log_logname">请输入用户名</string>
-    <string name="tv_log_comname">请输入企业标识</string>
     <string name="et_password">请输入密码</string>
     <string name="btn_login">立即登录</string>
     <string name="tv_code_password">忘记密码</string>
-    <string name="job_up">上岗</string>
-    <string name="job_up_l">员工扫描二维码上岗</string>
-    <string name="job_down">下岗</string>
-    <string name="job_down_l">员工扫描二维码下岗</string>
-    <string name="job_fault">故障报修</string>
-    <string name="job_fault_l">查看故障报修情况</string>
-    <string name="job_repair">故障处理</string>
-    <string name="job_repair_l">查看故障处理情况</string>
-    <string name="job_data">数据上报</string>
-    <string name="job_data_l">上报当前岗位数据</string>
     <string name="btn_logout">退出登录</string>
     <string name="user_name">名字</string>
-    <string name="user_type">账号类型</string>
-    <string name="user_phone">手机号码</string>
-    <string name="user_email">邮箱</string>
-    <string name="user_remark">备注</string>
-    <string name="user_role">角色</string>
-    <string name="user_status">状态</string>
     <string name="user_password">修改密码</string>
 
 
@@ -35,18 +18,10 @@
     <string name="xlistview_header_last_time">上次更新时间：</string>
     <string name="xlistview_footer_hint_normal">点击加载更多</string>
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
-    <string name="login_bottom">版权所有@2017 J1026</string>
+    <string name="login_bottom">版权所有@2017 J1701026</string>
     <string name="mpw_old">请输入旧密码</string>
     <string name="mpw_new">请输入新密码</string>
     <string name="mpw_again">再次输入新密码</string>
-    <string name="see_leave">查看假条</string>
-    <string name="staff_trace">查看轨迹</string>
-    <string name="rep_custom">客流数据</string>
-    <string name="rep_income">收入数据</string>
-    <string name="rep_cost">成本控制</string>
-    <string name="scan_equipment">设备信息:</string>
-    <string name="scan_id">设备ID:</string>
-    <string name="scan">扫描二维码</string>
     <string name="title_activity_message_detail">通知详情</string>
     <string name="title_activity_leave_detail">LeaveDetailActivity</string>
 </resources>

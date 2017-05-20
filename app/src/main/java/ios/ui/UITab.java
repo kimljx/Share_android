@@ -61,7 +61,7 @@ public class UITab extends LinearLayout {
 		}
 	}
 
-	int _tintColor = UIStoryboard.COLOR_TINT;
+	int _tintColor = COLOR.parse("#0000FF");
 
 	public void tintColor(int tintColor) {
 		_tintColor = tintColor;

@@ -8,24 +8,21 @@ import cn.share.RestBLL;
 import cn.share.phone.uc.PGACTIVITY;
 import cn.vipapps.CALLBACK;
 import cn.vipapps.DIALOG;
-
 import org.json.JSONObject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MyPasswordActivity extends PGACTIVITY {
 
-    @BindView(R.id.mpw_old)EditText mpw_old;
-    @BindView(R.id.mpw_new)EditText mpw_new;
-    @BindView(R.id.mpw_again)EditText mpw_again;
+    EditText mpw_old;
+    EditText mpw_new;
+    EditText mpw_again;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_password);
-        ButterKnife.bind(this);
-
+        mpw_old = (EditText)findViewById(R.id.mpw_old);
+        mpw_new = (EditText)findViewById(R.id.mpw_new);
+        mpw_again = (EditText)findViewById(R.id.mpw_again);
     }
 
 
