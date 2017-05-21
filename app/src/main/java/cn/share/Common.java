@@ -14,9 +14,7 @@ public class Common {
     //不用读取TOKEN的API
     public static final String[] APIS_GUEST =
             new String[]{"login","register","user"
-                    ,"commentList","collectList","message"};
-
-
+                    ,"commentList","collectList"};
 
     //要设置（改变）TOKEN的API
     public static String[] APIS_TOKEN = new String[]{"login"};

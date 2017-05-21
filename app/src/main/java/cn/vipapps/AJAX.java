@@ -776,8 +776,8 @@ public class AJAX {
 	public static void getImage(final String url, final CALLBACK<Bitmap> callback) {
 
 
-		if (CONFIG.getImage(url)!=null) {
-			callback.run(false, CONFIG.getImage(url));
+		if (BUFFER.get(url)!=null) {
+			callback.run(false, BUFFER.get(url));
 			return;
 		}
 		getBytes(url, null, Mode.GET, new CALLBACK<byte[]>() {
@@ -790,7 +790,7 @@ public class AJAX {
 				}
 				try {
 					Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-					CONFIG.setImage(url,bitmap);
+					BUFFER.put(url,bitmap);
 					callback.run(false, bitmap);
 				} catch (Exception e) {
 					callback.run(true, null);

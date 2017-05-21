@@ -103,8 +103,10 @@ public class MyActivity extends PGACTIVITY implements View.OnClickListener {
                 PGAJAX.getImage(avatarurl, true, new CALLBACK<Bitmap>() {
                     @Override
                     public void run(boolean isError, Bitmap result) {
+
                         if (isError) {
                             bitmap = null;
+                            runOnUiThread(runnable);
                             return;
                         }
                         bitmap = result;
