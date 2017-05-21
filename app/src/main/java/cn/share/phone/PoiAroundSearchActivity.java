@@ -23,8 +23,10 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.AMap.OnMapClickListener;
 import com.amap.api.maps.AMap.OnMarkerClickListener;
+import com.amap.api.maps.AMapOptions;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.BitmapDescriptor;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.CircleOptions;
@@ -128,6 +130,9 @@ public class PoiAroundSearchActivity extends Activity implements OnClickListener
             mAMap.setOnMarkerClickListener(this);
             TextView searchButton = (TextView) findViewById(R.id.btn_search);
             searchButton.setOnClickListener(this);
+            //设置地图缩放控件显示位置
+            UiSettings uiSettings=mAMap.getUiSettings();
+            uiSettings.setZoomPosition(AMapOptions.ZOOM_POSITION_RIGHT_CENTER);
         }
 
         //设置中心点和缩放比例
